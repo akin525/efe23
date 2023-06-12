@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\transaction;
 use App\Models\User;
 use App\Models\wallet;
 use Illuminate\Bus\Queueable;
@@ -75,5 +76,9 @@ class virtualaccountjob implements ShouldQueue
 
 
         }
+        $transaction=transaction::create([
+            'username'=>$this->user['username'],
+            'activities'=>'Virtual Account Generated Successfully',
+        ]);
     }
 }

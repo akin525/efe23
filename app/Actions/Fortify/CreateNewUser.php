@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Jobs\virtualaccountjob;
+use App\Models\transaction;
 use App\Models\User;
 use App\Models\wallet;
 use Illuminate\Support\Facades\Hash;
@@ -38,6 +39,7 @@ class CreateNewUser implements CreatesNewUsers
             'pre_balance'=>0,
             'balance' => 0,
         ]);
+
         $user = User::create([
             'username' => $input['username'],
             'name' => $input['name'],
@@ -48,7 +50,10 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
-
+        $transaction=transaction::create([
+            'username'=>$input['username'],
+            'activities'=>'Account Created Successfully',
+        ]);
         VirtualAccountJob::dispatch($user);
 
         return $user;

@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\bill;
 use App\Models\data;
 use App\Models\deposit;
+use App\Models\transaction;
 use App\Models\User;
 use App\Models\wallet;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,6 +23,10 @@ class DashboardController
 
         if (Auth::attempt($credentials)) {
             // Authentication successful
+            $transaction=transaction::create([
+                'username'=>Auth::user()->username,
+                'activities'=>'You Just Login Successful on '.Carbon::now(),
+            ]);
             return redirect()->intended('/account');
         } else {
             // Invalid credentials
