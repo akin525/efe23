@@ -55,7 +55,7 @@ class virtualaccountjob implements ShouldQueue
                 'address' => $this->user['address'],'gender' => $this->user['gender'],
                 'phone' =>$this->user['phone'],'webhook_url' => 'https://app.efemobilemoney.com/api/run1'),
             CURLOPT_HTTPHEADER => array(
-                'Authorization: MCDKEY_903sfjfi0ad833mk8537dhc03kbs120r0h9a'
+                'Authorization: mcd_key_aq9vGp2N8679cX3uAU7zIc3jQfd'
             ),
         ));
 
