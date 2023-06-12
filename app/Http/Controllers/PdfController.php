@@ -9,14 +9,14 @@ class PdfController
 {
     function viewpdf($request)
     {
-        $tran=bill::where('id', $request)->first();
-        return view('recepit', compact('tran'));
+        $bo=bill::where('id', $request)->first();
+        return view('recepit', compact('bo'));
     }
 
     function dopdf($request)
     {
-        $tran=bill::where('id', $request)->first();
-        $pdf = PDF::loadView('recepit1', compact('tran'));
+        $bo=bill::where('id', $request)->first();
+        $pdf = PDF::loadView('recepit1', compact('bo'));
         return $pdf->download('receipt.pdf');
     }
 
