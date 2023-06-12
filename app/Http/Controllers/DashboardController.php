@@ -41,6 +41,10 @@ public function dash(Request $request)
     $wallet=wallet::where('username', Auth::user()->username)->first();
     $tdepo=deposit::where('username', Auth::user()->username)->sum('amount');
     $tbill=bill::where('username', Auth::user()->username)->sum('amount');
+    $trans=transaction::where('username', Auth::user()->username)
+        ->orderBy('id', 'desc')
+        ->take(10)
+        ->get();
 
     $time = date("H");
     $timezone = date("e");
@@ -56,7 +60,7 @@ public function dash(Request $request)
                 if ($time >= "19") {
                     $greet="Good night 🌚";
                 }
-    return view('dashboard', compact('user', 'wallet', 'tdepo', 'tbill', 'greet'));
+    return view('dashboard', compact('user', 'wallet', 'tdepo', 'tbill', 'greet', 'trans'));
 }
 public function airtimeindex()
 {

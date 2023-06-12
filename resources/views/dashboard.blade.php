@@ -63,55 +63,57 @@
             </div>
         </div>
 
-        <div class="card text-center bg-primary-light subscribe" id="card-title-3">
-            <div class="card-header ">
-                <h5 class="card-title"><b>Funding</b></h5>
-            </div>
-            <div class="card-body">
-                <h4 class="card-text"><b>Kindly Click on the button below to check your funding account details</b></h4>
-                <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">My Account</button>
-            </div>
-            <div class="card-footer">
-                <h5 class="card-text ">After sign up always wait for 5min before clicking on my account</h5>
-            </div>
-        </div>
-        <div class="modal fade" id="exampleModalCenter">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Account Details</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal">
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        @if(Auth::user()->parentData->bank==null)
-                            <center>
-                                <button type="button" class="btn btn-primary text-center">Generate Account Number</button>
-                            </center>
-                        @else
+        <div class="col-xl-4 col-lg-12 col-sm-12">
+            <div class="card overflow-hidden">
+                <div class="text-center  overlay-box" style="background-image: url(images/big/img5.jpg);">
+                    <img src="{{asset('pro.png')}}" width="100" class="img-fluid rounded-circle" alt="">
+                    <h3 class="mt-3 mb-0 text-white">{{Auth::user()->name}}</h3>
+                </div>
+                <div class="card-body">
+                    @if(Auth::user()->parentData->bank==null)
+                        <center>
+                            <button type="button" class="btn btn-primary text-center">Generate Account Number</button>
+                        </center>
+                    @else
                         <div class="basic-list-group">
                             <div class="list-group"><a href="javascript:void(0);" class="list-group-item list-group-item-action active">Account
                                     Number </a><a href="javascript:void(0);" class="list-group-item list-group-item-action">
                                     {{Auth::user()->parentData->account_number}}</a>
                                 <a href="javascript:void(0);" class="list-group-item list-group-item-action disabled">
-                                   Account Name
-                                    </a> <a href="javascript:void(0);" class="list-group-item list-group-item-action">{{Auth::user()->parentData->account_name}}</a>
+                                    Account Name
+                                </a> <a href="javascript:void(0);" class="list-group-item list-group-item-action">{{Auth::user()->parentData->account_name}}</a>
                                 <a href="javascript:void(0);" class="list-group-item list-group-item-action active">
                                     Bank
                                 </a>
                                 <a href="javascript:void(0);" class="list-group-item list-group-item-action">{{Auth::user()->parentData->bank}}</a>
                             </div>
                         </div>
-                        @endif
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-{{--                        <button type="button" class="btn btn-primary">Save changes</button>--}}
+                    @endif
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-xl-8 col-xxl-8 col-lg-12 col-sm-12">
+            <div  class="card">
+                <div class="card-body">
+                    <h3><b>Activities</b></h3>
+                    <div id="DZ_W_TimeLine11" class="widget-timeline dz-scroll style-1  my-4 px-4">
+                        <ul class="timeline">
+                            @foreach($trans as $net)
+                                <li>
+                                    <div class="timeline-badge primary"></div>
+                                    <a class="timeline-panel" href="#">
+                                        <span>{{$net['created_at']}}</span>
+                                        <h6 class="mb-0">{{$net['activities']}}</h6>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-
 
         <div class="col-xl-12">
             <div class="card bg-primary-light analytics-card">
