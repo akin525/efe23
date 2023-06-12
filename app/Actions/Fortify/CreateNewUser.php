@@ -57,8 +57,7 @@ class CreateNewUser implements CreatesNewUsers
         ]);
         VirtualAccountJob::dispatch($user);
 
-        Auth::login($user);
-        return redirect()->intended('/account');
+       return $user;
 
     }
 

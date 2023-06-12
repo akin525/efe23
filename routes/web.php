@@ -31,13 +31,15 @@ Route::get('/', function () {
 Route::post('log', [\App\Http\Controllers\DashboardController::class, 'log'])->name('log');
 
 Route::get('list', [\App\Http\Controllers\listdata::class, 'list'])->name('list');
-
+Route::get('/dashboard', function () {
+    return redirect()->route('account');
+});
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('dashboard', [DashboardController::class, 'dash'])->name('dashboard');
+//    Route::get('dashboard', [DashboardController::class, 'dash'])->name('dashboard');
     Route::get('account', [DashboardController::class, 'dash'])->name('account');
 
 //    airtime route
