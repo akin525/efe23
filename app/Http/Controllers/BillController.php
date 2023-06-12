@@ -518,6 +518,12 @@ class BillController extends Controller
                         $am = "$product->name  was successful delivered to";
                         $ph = $request->number;
 
+                        $receiver = $user->email;
+                        $admin = 'info@renomobilemoney.com';
+
+
+                        Mail::to($receiver)->send(new Emailtrans($bo));
+                        Mail::to($admin)->send(new Emailtrans($bo));
                         return response()->json([
                             'status' => 'success',
                             'message' => $am.' ' .$ph,

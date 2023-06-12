@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Console\encription;
+use App\Mail\Emailtrans;
 use App\Models\bill;
 use App\Models\Comission;
 use App\Models\data;
@@ -11,6 +13,7 @@ use App\Models\wallet;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AirtimeController
@@ -122,9 +125,12 @@ class AirtimeController
                         $wallet->save();
 
                         $parise=$comission."₦ Commission Is added to your wallet balance";
-//                        Alert::success('success', $am.' ' .$ph.' & '.$parise);
-//                        return redirect()->route('viewpdf', $bo->id);
+                        $receiver = $user->email;
+                        $admin = 'info@renomobilemoney.com';
 
+
+                        Mail::to($receiver)->send(new Emailtrans($bo));
+                        Mail::to($admin)->send(new Emailtrans($bo));
                         return response()->json([
                             'status' => 'success',
                             'message' => $am.' ' .$ph.' & '.$parise,
