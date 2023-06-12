@@ -126,7 +126,7 @@ class AirtimeController
 
                         $parise=$comission."₦ Commission Is added to your wallet balance";
                         $receiver = $user->email;
-                        $admin = 'info@renomobilemoney.com';
+                        $admin = 'info@efemobilemoney.com';
 
 
                         Mail::to($receiver)->send(new Emailtrans($bo));

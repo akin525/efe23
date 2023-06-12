@@ -519,7 +519,7 @@ class BillController extends Controller
                         $ph = $request->number;
 
                         $receiver = $user->email;
-                        $admin = 'info@renomobilemoney.com';
+                        $admin = 'info@efemobilemoney.com';
 
 
                         Mail::to($receiver)->send(new Emailtrans($bo));

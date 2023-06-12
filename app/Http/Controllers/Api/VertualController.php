@@ -225,7 +225,7 @@ class VertualController  extends Notification
                 $body = $user->username. ' Account Fund with ₦'.$amount.' from'.$from.' '.$from1;
 
 
-                $admin = 'info@renomobilemoney.com';
+                $admin = 'info@efemobilemoney.com';
 
                 $receiver = $user->email;
                 $username=$user->username;
