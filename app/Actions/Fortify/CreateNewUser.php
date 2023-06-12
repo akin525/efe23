@@ -6,6 +6,7 @@ use App\Jobs\virtualaccountjob;
 use App\Models\transaction;
 use App\Models\User;
 use App\Models\wallet;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -56,7 +57,9 @@ class CreateNewUser implements CreatesNewUsers
         ]);
         VirtualAccountJob::dispatch($user);
 
-        return $user;
-        }
+        Auth::login($user);
+        return redirect()->intended('/account');
+
+    }
 
 }
