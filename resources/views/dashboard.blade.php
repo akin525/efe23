@@ -8,8 +8,8 @@
                     <div class="any-card">
                         <div class="c-con">
                             <h4 class="heading mb-0">{{$greet}}<strong>{{Auth::user()->username}}!!</strong></h4>
-                            <span>Best seller of the week</span>
-                            <p class="mt-3">Lorem Ipsum is simply dummy 😎 text of the printing and typesetting industry.</p>
+                            <span>Notification:</span>
+                            <p class="mt-3">Loading......</p>
 
                             <a href="#" class="btn btn-primary btn-sm">View Profile</a>
                         </div>
