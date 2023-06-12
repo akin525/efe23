@@ -9,6 +9,7 @@ use App\Models\charge;
 use App\Models\charges;
 use App\Models\charp;
 use App\Models\settings;
+use App\Models\transaction;
 use App\Models\web;
 use App\Models\webook;
 use App\Models\deposit;
@@ -215,6 +216,11 @@ class VertualController  extends Notification
                 ]);
                 $wallet->balance = $gt;
                 $wallet->save();
+
+                $transaction=transaction::create([
+                    'username'=>$deposit['username'],
+                    'activities'=>$narration,
+                ]);
                 $title = $user->username." Account Funded";
                 $body = $user->username. ' Account Fund with ₦'.$amount.' from'.$from.' '.$from1;
 
