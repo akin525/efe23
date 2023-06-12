@@ -29,7 +29,7 @@ class FundController
             $fund = deposit::where('username', $user->username)->get();
 
 
-            return view('Deposit', compact('fund'));
+            return view('deposit', compact('fund'));
         }
         return redirect("login")->withSuccess('You are not allowed to access');
 
