@@ -1,9 +1,11 @@
 <head>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- PAGE TITLE HERE -->
     <title>@yield('tittle')</title>
     <!-- FAVICONS ICON -->
-    <link rel="shortcut icon" type="image/png" href="{{asset('efe1.png')}}">
+    <link rel="shortcut icon" type="image/png" href="{{asset('dashboard/images/efe1.png')}}">
 
     <link href="{{asset('dashboard/vendor/bootstrap-select/dist/css/bootstrap-select.min.css')}}" rel="stylesheet">
     <link href="{{asset('dashboard/vendor/swiper/css/swiper-bundle.min.css')}}" rel="stylesheet">
