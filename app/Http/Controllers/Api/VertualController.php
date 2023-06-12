@@ -225,8 +225,8 @@ class VertualController  extends Notification
                 $username=$user->username;
                 $deposit['charges']=$char->charges;
 
-//                Mail::to($receiver)->send(new Emailfund($deposit));
-//                Mail::to($admin)->send(new Emailfund($deposit));
+                Mail::to($receiver)->send(new Emailfund($deposit));
+                Mail::to($admin)->send(new Emailfund($deposit));
 
 
 
