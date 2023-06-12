@@ -29,6 +29,6 @@ class Emailotp extends Mailable
     public function build()
     {
         $input = $this->input;
-        return $this->markdown('email.signup',['input' => $input])->subject('New User');
+        return $this->markdown('emails.signup',['input' => $input])->subject('New User');
     }
 }
