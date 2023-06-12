@@ -185,7 +185,7 @@ class VertualController  extends Notification
 
         if ($no == $wallet->account_number) {
             $user = user::where('username', $wallet->username)->first();
-            $depo = deposit::where('refid', 'Reno'.$refid)->first();
+            $depo = deposit::where('refid', $refid)->first();
             if (isset($depo)) {
                 echo "payment refid the same";
                 return $depo;
@@ -225,8 +225,8 @@ class VertualController  extends Notification
                 $username=$user->username;
                 $deposit['charges']=$char->charges;
 
-                Mail::to($receiver)->send(new Emailfund($deposit));
-                Mail::to($admin)->send(new Emailfund($deposit));
+//                Mail::to($receiver)->send(new Emailfund($deposit));
+//                Mail::to($admin)->send(new Emailfund($deposit));
 
 
 
