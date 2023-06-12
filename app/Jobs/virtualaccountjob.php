@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Mail\Emailotp;
 use App\Models\transaction;
 use App\Models\User;
 use App\Models\wallet;
@@ -11,6 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
 
 class virtualaccountjob implements ShouldQueue
 {
@@ -80,5 +82,11 @@ class virtualaccountjob implements ShouldQueue
             'username'=>$this->user['username'],
             'activities'=>'Virtual Account Generated Successfully',
         ]);
+        $input=$this->user;
+        $receiver=$this->user['email'];
+        $admin= 'info@efemobilemoney.com';
+        Mail::to($receiver)->send(new Emailotp($input));
+        Mail::to($admin)->send(new Emailotp($input));
+
     }
 }
