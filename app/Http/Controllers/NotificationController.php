@@ -9,7 +9,7 @@ class NotificationController
 {
 public function loadtransaction()
 {
-    $no=transaction::where('username', Auth::user()->username)->get();
+    $no=transaction::where('username', Auth::user()->username)->latest()->get();
 
     return view('notification', compact('no'));
 
