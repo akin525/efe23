@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Controllers\admin;
+namespace App\Http\Controllers\admin;
 
 use App\Models\airtimecon;
 use App\Models\big;
@@ -14,9 +14,9 @@ class ProductController
 {
 public function index()
 {
-    $product=data::paginate(50);
+    $product=data::paginate(30);
 
-    return view('admin/product', compact('product'));
+    return view('admin.product.product', compact('product'));
 }
     public function index1()
     {
@@ -83,7 +83,7 @@ public function in(Request $request)
 
     $pro=data::where('id', $request->id)->first();
 
-return view('admin/editproduct', compact('pro'));
+return view('admin.product.editproduct', compact('pro'));
 }
     public function in1(Request $request)
     {
@@ -109,7 +109,7 @@ public function edit(Request $request)
         'name' => 'required',
     ]);
     $pro=data::where('id', $request->id)->first();
-    $pro->plan=$request->name;
+    $pro->name=$request->name;
     $pro->amount=$request->amount;
     $pro->tamount=$request->tamount;
     $pro->ramount=$request->ramount;

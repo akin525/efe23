@@ -272,7 +272,7 @@
                         <span class="nav-text">Product Controller</span>
                     </a>
                     <ul aria-expanded="false">
-                        <li><a href="{{route('waec')}}">MCD Product</a></li>
+                        <li><a href="{{route('admin/product')}}">MCD Product</a></li>
                     </ul>
                 </li>
                 <li><a href="{{route('admin/user')}}" class="" aria-expanded="false">
