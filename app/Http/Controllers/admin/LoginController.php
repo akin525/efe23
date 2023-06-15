@@ -27,7 +27,7 @@ public function login(Request $request)
 
         if (!isset($user)) {
             return redirect()->back()->withInput($request->only('username', 'remember'))
-                ->withErrors(['password' => 'Credentials does not match.']);
+                ->withErrors(['admin' => 'You have not been assign as admin.']);
         }
 
         Auth::login($user);
