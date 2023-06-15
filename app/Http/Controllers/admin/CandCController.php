@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Controllers\admin;
+namespace App\Http\Controllers\admin;
 
 use App\Console\encription;
 use App\Mail\Emailcharges;
@@ -9,9 +9,11 @@ use App\Models\charge;
 use App\Models\charp;
 use App\Models\deposit;
 use App\Models\setting;
+use App\Models\transaction;
 use App\Models\User;
 use App\Models\wallet;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -43,39 +45,45 @@ public function credit(Request $request)
     if (Auth()->user()->role == "admin") {
 
 
-        $user = User::where('username', encription::encryptdata($request->username))->first();
+        $user = User::where('username', $request->username)->first();
         if (!isset($user)){
-            Alert::warning('Admin', 'Username not found');
-            return back();
+            $mg='Username not found';
+            return response()->json($mg, Response::HTTP_BAD_REQUEST);
+
 
         }
-        $wallet = wallet::where('username', encription::encryptdata($request->username))->first();
+        $wallet = wallet::where('username', $request->username)->first();
 
-        $depo = deposit::where('payment_ref', encription::encryptdata($request->refid))->first();
+        $depo = deposit::where('refid',$request->refid)->first();
         if (isset($depo)) {
-            Alert::warning('Admin', 'Duplicate Transaction');
-            return back();
+            $mg= 'Duplicate Transaction';
+            return response()->json($mg, Response::HTTP_CONFLICT);
 
         } else {
             $gt = $wallet->balance + $request->amount;
             $deposit = deposit::create([
-                'username' => encription::encryptdata($request->username),
-                'payment_ref' => $request->refid,
+                'username' => $request->username,
+                'refid' => $request->refid,
+                'narration'=>'Being Fund By Admin',
                 'amount' => $request->amount,
                 'iwallet' => $wallet->balance,
                 'fwallet' => $gt,
             ]);
+            $transaction=transaction::create([
+                'username'=>$request->username,
+                'activities'=>'Being Fund By Admin',
+            ]);
 
             $wallet->balance = $gt;
             $wallet->save();
-            $admin = 'info@renomobilemoney.com';
+            $admin = 'info@efemobilemoney.com';
 
-            $receiver = encription::decryptdata($user->email);
+            $receiver = $user->email;
             Mail::to($receiver)->send(new Emailfund($deposit));
             Mail::to($admin)->send(new Emailfund($deposit));
             $mo=$request->username." was successful fund with NGN".$request->amount;
-            Alert::success('Admin', $mo);
-            return back();
+
+            return response()->json(['status'=>'success', 'message'=>$mo]);
 
         }
     }

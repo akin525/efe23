@@ -90,6 +90,7 @@
                         <tr>
                             <th>Date</th>
                             <th>Username</th>
+                            <th>Edit</th>
                             <th>Receipt</th>
                             <th>Plan</th>
                             <th>Amount</th>
@@ -104,6 +105,7 @@
                             <tr>
                                 <td>{{$re->timestamp}}</td>
                                 <td>{{$re->username}}</td>
+                                <td><a href="{{route('admin/profile', $re->username)}}"><i class="fa fa-pencil"></i> </a></td>
                                 <td><a href="{{route('viewpdf', $re->id)}}" class="badge badge-success text-white"><i class="fa fa-download">Pdf</i></a> </td>
                                 <td>{{$re->product}}</td>
                                 <td>{{$re->amount}}</td>

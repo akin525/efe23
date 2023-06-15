@@ -2,6 +2,9 @@
 @section('tittle', $user['name'].' page')
 @section('content')
     <div class="row">
+        <div class="loading-overlay" id="loadingSpinner" style="display: none;">
+            <div class="loading-spinner"></div>
+        </div>
         <div class="col-lg-12">
             <div class="card card-profile">
                 <div class="admin-user">
@@ -320,33 +323,36 @@
                                     <div class="pt-3">
                                         <div class="settings-form">
                                             <h4 class="text-primary">Account Setting</h4>
-                                            <form>
+                                            <form id="dataForm">
+                                                @csrf
                                                 <div class="row">
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Email</label>
-                                                        <input type="email" value="{{$user->email}}" class="form-control" readonly/>
+                                                        <input type="email" value="{{$user->email}}" name="email" id="email" class="form-control" readonly/>
                                                     </div>
+                                                    <input type="hidden" value="{{$user->username}}" name="username" id="username" class="form-control" readonly/>
+
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Full Name</label>
-                                                        <input type="text" value="{{$user->name}}" class="form-control"/>
+                                                        <input type="text" value="{{$user->name}}" name="name" id="name" class="form-control"/>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Address</label>
-                                                    <input type="text" value="{{$user->address}}" class="form-control"/>
+                                                    <input type="text" value="{{$user->address}}" name="address" id="address" class="form-control"/>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Number</label>
-                                                    <input type="number" value="{{$user->phone}}" class="form-control"/>
+                                                    <input type="number" value="{{$user->phone}}" name="number" id="number" class="form-control"/>
                                                 </div>
                                                 <div class="row">
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Gender</label>
-                                                        <input type="text" value="{{$user->gender}}" class="form-control"/>
+                                                        <input type="text" value="{{$user->gender}}" name="gender" id="gender" class="form-control"/>
                                                     </div>
                                                     <div class="mb-3 col-md-4">
                                                         <label class="form-label">Role</label>
-                                                        <select class="form-control default-select wide profile-page" id="inputState">
+                                                        <select class="form-control default-select wide profile-page" name="role" id="role">
                                                             <option selected="">{{$user->role}}</option>
                                                             <option value="user">User</option>
                                                             <option value="admin">Admin</option>
@@ -391,4 +397,80 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#dataForm').submit(function(e) {
+                e.preventDefault(); // Prevent the form from submitting traditionally
+                // Get the form data
+                var formData = $(this).serialize();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'Did you want to update this user',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // The user clicked "Yes", proceed with the action
+                        // Add your jQuery code here
+                        // For example, perform an AJAX request or update the page content
+                        $('#loadingSpinner').show();
+                        $.ajax({
+                            url: "{{ route('admin/update') }}",
+                            type: 'POST',
+                            data: formData,
+                            success: function(response) {
+                                // Handle the success response here
+                                $('#loadingSpinner').hide();
+
+                                console.log(response);
+                                // Update the page or perform any other actions based on the response
+
+                                if (response.status == 'success') {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Success',
+                                        text: response.message
+                                    }).then(() => {
+                                        location.reload(); // Reload the page
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        icon: 'info',
+                                        title: 'Pending',
+                                        text: response.message
+                                    });
+                                    // Handle any other response status
+                                }
+
+                            },
+                            error: function(xhr) {
+                                $('#loadingSpinner').hide();
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'fail',
+                                    text: xhr.responseText
+                                });
+                                // Handle any errors
+                                console.log(xhr.responseText);
+
+                            }
+                        });
+
+
+                    }
+                });
+
+
+                // Send the AJAX request
+            });
+        });
+
+    </script>
+
 @endsection

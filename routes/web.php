@@ -1,12 +1,15 @@
 <?php
 
+use App\Http\Controllers\admin\AdminpdfController;
 use App\Http\Controllers\admin\bonusController;
+use App\Http\Controllers\admin\CandCController;
 use App\Http\Controllers\admin\DashboardsController;
 use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\QueryController;
 use App\Http\Controllers\admin\TransactionController;
 use App\Http\Controllers\admin\UsersController;
+use App\Http\Controllers\admin\VertualAController;
 use App\Http\Controllers\admin\WithadController;
 use App\Http\Controllers\AirtimeController;
 use App\Http\Controllers\BillController;
@@ -133,4 +136,17 @@ Route::get('admin/dashboard', [DashboardsController::class, 'dashboard'])->name(
     Route::get('admin/up1/{id}', [ProductController::class, 'pair'])->name('admin/up1');
     Route::get('admin/profile/{username}', [UsersController::class, 'profile'])->name('admin/profile');
 //    Route::get('admin/delete/{id}', [UserController::class, 'deleteuser'])->name('admin/delete');
+
+    Route::get('admin/viewpdf/{id}', [AdminpdfController::class, 'viewpdf'])->name('admin/viewpdf');
+    Route::get('admin/dopdf/{id}', [AdminpdfController::class, 'dopdf'])->name('admin/dopdf');
+
+    Route::get('admin/webbook', [DashboardController::class, 'webbook'])->name('admin/webbook');
+    Route::get('admin/vertual', [VertualAController::class, 'list'])->name('admin/vertual');
+    Route::post('admin/update', [VertualAController::class, 'updateuser'])->name('admin/update');
+    Route::post('admin/pass', [VertualAController::class, 'pass'])->name('admin/pass');
+    Route::get('admin/credit', [CandCController::class, 'cr'])->name('admin/credit');
+    Route::post('admin/cr', [CandCController::class, 'credit'])->name('admin/cr');
+    Route::post('admin/ch', [CandCController::class, 'charge'])->name('admin/ch');
+    Route::post('admin/finduser', [UsersController::class, 'finduser'])->name('admin/finduser');
+    Route::get('admin/finds', [UsersController::class, 'fin'])->name('admin/finds');
 });

@@ -80,7 +80,10 @@ $wallet=wallet::where('username', $username)->first();
         $sumbo = bill::where('username', $ap->username)->sum('amount');
         $sumch = charges::where('username', $ap->username)->sum('amount');
         $charge = charges::where('username', $ap->username)->paginate(10);
-        $no=transaction::where('username', $ap->username)->get();
+        $no=transaction::where('username', $ap->username)
+            ->orderBy('id', 'desc')
+            ->take(8)
+            ->get();
 //return $user;
         return view('admin/profile', ['no'=>$no, 'user' => $ap, 'sumtt'=>$sumtt, 'charge'=>$charge,  'sumch'=>$sumch, 'sumbo'=>$sumbo, 'tt' => $tt, 'wallet'=>$wallet, 'td' => $td,  'version' => $v,  'tat' =>$tat]);
     }
@@ -103,8 +106,7 @@ $wallet=wallet::where('username', $username)->first();
 
         $server->status=$u;
         $server->save();
-        return redirect(url('admin/server'))
-            ->with('status',' Server change successfully');
+        return response()->json(['status'=>'success', 'message'=>'server update successful']);
 
     }
     public function mes()

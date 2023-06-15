@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Controllers\admin;
+namespace App\Http\Controllers\admin;
 
 use App\Console\encription;
 use App\Mail\Emailpass;
@@ -45,16 +45,15 @@ public function updateuser(Request $request)
         'role' => 'required',
     ]);
     $users=User::where('username', $request->username)->first();
-    $users->name=encription::encryptdata($request->name);
+    $users->name=$request->name;
     $users->address=$request->address;
-    $users->dob=$request->dob;
     $users->gender=$request->gender;
-    $users->phone=encription::encryptdata($request->number);
-    $users->email=encription::encryptdata($request->email);
+    $users->phone=$request->number;
+    $users->email=$request->email;
     $users->role=$request->role;
     $users->save();
-Alert::Success('Admin', 'Profile Updated Successfully');
-    return redirect(url('admin/profile/'.$users->username));
+
+    return response()->json(['status'=>'success', 'message'=>'Profile Updated Successfully']);
 
 }
 public function pass(Request $request)
