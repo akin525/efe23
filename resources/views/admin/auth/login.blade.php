@@ -213,7 +213,7 @@
                                     </div>
                                 @endif
 
-                                <form method="POST" action="{{ route('log') }}">
+                                <form method="POST" action="{{ route('admin/log') }}">
                                     @csrf
 
                                     <div class="row subscribe">

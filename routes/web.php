@@ -42,6 +42,10 @@ Route::get('list', [\App\Http\Controllers\listdata::class, 'list'])->name('list'
 
 Route::get('admin/login', [LoginController::class, 'index'])->name('admin/login');
 
+Route::post('admin/log',[LoginController::class, 'login'])->name('admin/log');
+Route::get('/admin', function () {
+    return view('admin.auth.login');
+});
 
 Route::middleware([
     'auth:sanctum',
