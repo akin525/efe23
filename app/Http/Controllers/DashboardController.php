@@ -43,7 +43,7 @@ public function dash(Request $request)
     $tbill=bill::where('username', Auth::user()->username)->sum('amount');
     $trans=transaction::where('username', Auth::user()->username)
         ->orderBy('id', 'desc')
-        ->take(10)
+        ->take(5)
         ->get();
 
     $time = date("H");

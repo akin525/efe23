@@ -1,7 +1,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title >EFE LOGIN PAGE</title>
+    <title >EFE ADMIN LOGIN PAGE</title>
     <meta name="description" content=" Efe Mobile Money  is a platform offers users opportunity to earn online by simply carrying out simple task such as advert sharing, watching advert ">
     <meta name="keywords" content="advert sharing, watching advert">
     <meta name="author" content="RENO">
@@ -27,21 +27,19 @@
     <!-- RTL Css -->
     <link rel="stylesheet" href="{{asset('auth/assets/css/rtl.minf700.css?v=1.0.1')}}">
 
-
-
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
-{{--    @if(Session::has('alert.config'))--}}
-{{--        @if(config('sweetalert.amination.enable'))--}}
-{{--            <link rel="stylesheet" href="{{config('sweetalert.aminatecss')}}">--}}
-{{--        @endif--}}
-{{--        <script src="{{ $cdn?? asset('vendor/sweetalert/sweetalert.all.js')}}"></script>--}}
-{{--        <script>--}}
-{{--            swal.fire({!! Session::pull('alert.config') !!});--}}
-{{--        </script>--}}
-{{--    @endif--}}
+    {{--    @if(Session::has('alert.config'))--}}
+    {{--        @if(config('sweetalert.amination.enable'))--}}
+    {{--            <link rel="stylesheet" href="{{config('sweetalert.aminatecss')}}">--}}
+    {{--        @endif--}}
+    {{--        <script src="{{ $cdn?? asset('vendor/sweetalert/sweetalert.all.js')}}"></script>--}}
+    {{--        <script>--}}
+    {{--            swal.fire({!! Session::pull('alert.config') !!});--}}
+    {{--        </script>--}}
+    {{--    @endif--}}
 </head>
 
 <body class=" ">
@@ -198,16 +196,16 @@
                     <div class="logo-normal">
                         <img width="100" src="{{asset('efe.png')}}" alt=""/>
                     </div>
-{{--                    <h2 class="logo-title ms-3 mb-0">EFE MOBILE MONEY</h2>--}}
+                    {{--                    <h2 class="logo-title ms-3 mb-0">EFE MOBILE MONEY</h2>--}}
                 </a>
                 <div class="row justify-content-center pt-5">
                     <div class="col-md-9">
                         <div class="card  d-flex justify-content-center mb-0 auth-card iq-auth-form">
                             <div class="card-body">
                                 <h2 class="mb-2 text-center">Sign In</h2>
-                                <p class="text-center">Login to stay connected.</p>
+                                <p class="text-center">Login to Admin  Dashboard.</p>
 
-{{--                                <x-validation-errors class="alert alert-danger" />--}}
+                                {{--                                <x-validation-errors class="alert alert-danger" />--}}
 
                                 @if (session('status'))
                                     <div class="mb-4 font-medium text-sm text-green-600">
@@ -236,24 +234,19 @@
                                                 <input type="checkbox" class="form-check-input" id="customCheck1">
                                                 <label class="form-check-label" for="customCheck1">Remember Me</label>
                                             </div>
-                                            <a href="{{route('password.request')}}">Forgot Password?</a>
                                         </div>
                                         <button type="submit" class="submit-btn btn-primary">Sign In <span class="load loading"></span></button>
                                     </div>
                                     <br/>
                                     <script>
-                                            const btns = document.querySelectorAll('button');
-                                            btns.forEach((items)=>{
+                                        const btns = document.querySelectorAll('button');
+                                        btns.forEach((items)=>{
                                             items.addEventListener('click',(evt)=>{
                                                 evt.target.classList.add('activeLoading');
                                             })
                                         })
 
                                     </script>
-                                    <p class="text-center my-3">or sign in with other accounts?</p
-                                    <p class="mt-3 text-center">
-                                        Don’t have an account? <a href="{{route('register')}}" class="text-underline">Click here to sign up.</a>
-                                    </p>
                                 </form>
                             </div>
                         </div>

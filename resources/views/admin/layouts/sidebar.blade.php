@@ -31,16 +31,16 @@
 
     <!-- Style css -->
     <link href="{{asset('dashboard/css/style.css')}}" rel="stylesheet">
-{{--    @if(Session::has('alert.config'))--}}
-{{--        @if(config('sweetalert.amination.enable'))--}}
-{{--    <link rel="stylesheet" href="{{config('sweetalert.aminatecss')}}">--}}
-{{--        @endif--}}
-{{--    <script src="{{ $cdn?? asset('vendor/sweetalert/sweetalert.all.js')}}"></script>--}}
-{{--    <script>--}}
-{{--        swal.fire({!! Session::pull('alert.config') !!});--}}
-{{--    </script>--}}
-{{--    @endif--}}
-@yield('style')
+    {{--    @if(Session::has('alert.config'))--}}
+    {{--        @if(config('sweetalert.amination.enable'))--}}
+    {{--    <link rel="stylesheet" href="{{config('sweetalert.aminatecss')}}">--}}
+    {{--        @endif--}}
+    {{--    <script src="{{ $cdn?? asset('vendor/sweetalert/sweetalert.all.js')}}"></script>--}}
+    {{--    <script>--}}
+    {{--        swal.fire({!! Session::pull('alert.config') !!});--}}
+    {{--    </script>--}}
+    {{--    @endif--}}
+    @yield('style')
 </head>
 <style>
     .loading-overlay {
@@ -95,7 +95,7 @@
     ***********************************-->
 
     <div class="nav-header">
-        <a href="{{route('account')}}" class="brand-logo">
+        <a href="{{route('admin/dashboard')}}" class="brand-logo">
             <img  class="logo-abbr text-center" width="50" src="{{asset('efe.png')}}" alt="" />
         </a>
         <div class="nav-control">
@@ -172,44 +172,12 @@
                                         <div class="card border-0 mb-0">
                                             <div class="card-header py-2">
                                                 <div class="products">
-{{--                                                    <img src="{{asset('dashboard/images/efe.png')}}" class="avatar avatar-md" alt="">--}}
+{{--                                                    <img src="{{asset('dashboard/images/user.jpg')}}" class="avatar avatar-md" alt="">--}}
                                                     <div>
                                                         <h6>{{Auth::user()->name}}</h6>
                                                         <span>Customer</span>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="card-body px-0 py-2">
-                                                <a href="{{route('profile.show')}}" class="dropdown-item ai-icon ">
-                                                    <svg  width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9848 15.3462C8.11714 15.3462 4.81429 15.931 4.81429 18.2729C4.81429 20.6148 8.09619 21.2205 11.9848 21.2205C15.8524 21.2205 19.1543 20.6348 19.1543 18.2938C19.1543 15.9529 15.8733 15.3462 11.9848 15.3462Z" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9848 12.0059C14.5229 12.0059 16.58 9.94779 16.58 7.40969C16.58 4.8716 14.5229 2.81445 11.9848 2.81445C9.44667 2.81445 7.38857 4.8716 7.38857 7.40969C7.38 9.93922 9.42381 11.9973 11.9524 12.0059H11.9848Z" stroke="var(--primary)" stroke-width="1.42857" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
-
-                                                    <span class="ms-2">Profile </span>
-                                                </a>
-                                                <a href="{{route('notification')}}" class="dropdown-item ai-icon ">
-                                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M17.9026 8.85114L13.4593 12.4642C12.6198 13.1302 11.4387 13.1302 10.5992 12.4642L6.11844 8.85114" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9089 21C19.9502 21.0084 22 18.5095 22 15.4384V8.57001C22 5.49883 19.9502 3 16.9089 3H7.09114C4.04979 3 2 5.49883 2 8.57001V15.4384C2 18.5095 4.04979 21.0084 7.09114 21H16.9089Z" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
-
-                                                    <span class="ms-2">Message </span>
-                                                </a>
-                                                <a href="{{route('notification')}}" class="dropdown-item ai-icon ">
-                                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 17.8476C17.6392 17.8476 20.2481 17.1242 20.5 14.2205C20.5 11.3188 18.6812 11.5054 18.6812 7.94511C18.6812 5.16414 16.0452 2 12 2C7.95477 2 5.31885 5.16414 5.31885 7.94511C5.31885 11.5054 3.5 11.3188 3.5 14.2205C3.75295 17.1352 6.36177 17.8476 12 17.8476Z" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        <path d="M14.3888 20.8572C13.0247 22.372 10.8967 22.3899 9.51947 20.8572" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
-
-                                                    <span class="ms-2">Notification </span>
-                                                </a>
-                                            </div>
-                                            <div class="card-footer px-0 py-2">
-                                                <a href="#" class="dropdown-item ai-icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-                                                    <span class="ms-2">Logout </span>
-                                                </a>
                                             </div>
                                         </div>
 
@@ -230,7 +198,7 @@
     <div class="deznav">
         <div class="deznav-scroll">
             <ul class="metismenu" id="menu">
-                <li><a class="" href="{{route('account')}}" aria-expanded="false">
+                <li><a class="" href="{{route('admin/dashboard')}}" aria-expanded="false">
                         <div class="menu-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M9.13478 20.7733V17.7156C9.13478 16.9351 9.77217 16.3023 10.5584 16.3023H13.4326C13.8102 16.3023 14.1723 16.4512 14.4393 16.7163C14.7063 16.9813 14.8563 17.3408 14.8563 17.7156V20.7733C14.8539 21.0978 14.9821 21.4099 15.2124 21.6402C15.4427 21.8705 15.756 22 16.0829 22H18.0438C18.9596 22.0024 19.8388 21.6428 20.4872 21.0008C21.1356 20.3588 21.5 19.487 21.5 18.5778V9.86686C21.5 9.13246 21.1721 8.43584 20.6046 7.96467L13.934 2.67587C12.7737 1.74856 11.1111 1.7785 9.98539 2.74698L3.46701 7.96467C2.87274 8.42195 2.51755 9.12064 2.5 9.86686V18.5689C2.5 20.4639 4.04738 22 5.95617 22H7.87229C8.55123 22 9.103 21.4562 9.10792 20.7822L9.13478 20.7733Z" fill="#90959F"/>
@@ -240,7 +208,7 @@
                     </a>
 
                 </li>
-                <li><a href="{{route('tasks')}}" class="" aria-expanded="false">
+                <li><a href="{{route('admin/bills')}}" class="" aria-expanded="false">
                         <div class="menu-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_113_177)">
@@ -254,7 +222,7 @@
                                 </defs>
                             </svg>
                         </div>
-                        <span class="nav-text">Tasks</span>
+                        <span class="nav-text">All Bills</span>
                     </a>
                 </li>
 
@@ -269,14 +237,11 @@
                                 </g>
                             </svg>
                         </div>
-                        <span class="nav-text">Recharge</span>
+                        <span class="nav-text">Server Control</span>
                     </a>
                     <ul aria-expanded="false">
-                        <li><a href="{{route('airtime')}}">Buy Airtime</a></li>
-                        <li><a href="{{route('select')}}">Buy Data</a></li>
-                        <li><a href="{{route('datapin')}}">Buy Data-pin</a></li>
-                        <li><a href="{{url('tv')}}">Tv Subscription</a></li>
-                        <li><a href="{{route('electricity')}}">Electricity</a></li>
+                        <li><a href="{{route('admin/air')}}">Airtime Controller</a></li>
+                        <li><a href="{{route('admin/server')}}">Data Controller</a></li>
                     </ul>
                 </li>
 
@@ -292,7 +257,7 @@
                             </svg>
 
                         </div>
-                        <span class="nav-text"> Bills Invoice</span>
+                        <span class="nav-text">All Deposit</span>
                     </a>
                 </li>
                 <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
@@ -304,14 +269,13 @@
                                 </g>
                             </svg>
                         </div>
-                        <span class="nav-text">Education</span>
+                        <span class="nav-text">Product Controller</span>
                     </a>
                     <ul aria-expanded="false">
-                        <li><a href="{{route('waec')}}">Waec</a></li>
-                        <li><a href="{{route('neco')}}">Neco</a></li>
+                        <li><a href="{{route('waec')}}">MCD Product</a></li>
                     </ul>
                 </li>
-                <li><a href="{{route('profile.show')}}" class="" aria-expanded="false">
+                <li><a href="{{route('admin/user')}}" class="" aria-expanded="false">
                         <div class="menu-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g opacity="0.5">
@@ -323,7 +287,7 @@
                             </svg>
 
                         </div>
-                        <span class="nav-text">My Account</span>
+                        <span class="nav-text">All Users</span>
                     </a>
                 </li>
                 <li><a href="{{route('notification')}}" class="" aria-expanded="false">

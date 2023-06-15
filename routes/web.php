@@ -1,5 +1,13 @@
 <?php
 
+use App\Http\Controllers\admin\bonusController;
+use App\Http\Controllers\admin\DashboardsController;
+use App\Http\Controllers\admin\LoginController;
+use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\QueryController;
+use App\Http\Controllers\admin\TransactionController;
+use App\Http\Controllers\admin\UsersController;
+use App\Http\Controllers\admin\WithadController;
 use App\Http\Controllers\AirtimeController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\DashboardController;
@@ -31,9 +39,10 @@ Route::get('/', function () {
 Route::post('log', [\App\Http\Controllers\DashboardController::class, 'log'])->name('log');
 
 Route::get('list', [\App\Http\Controllers\listdata::class, 'list'])->name('list');
-Route::get('/dashboard', function () {
-    return redirect()->route('account');
-});
+
+Route::get('admin/login', [LoginController::class, 'index'])->name('admin/login');
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -90,4 +99,34 @@ Route::middleware([
     Route::get('advert', [TransController::class, 'alladvert'])->name('advert');
 
 
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
+Route::get('admin/dashboard', [DashboardsController::class, 'dashboard'])->name('admin/dashboard');
+    Route::get('admin/pd2/{id}', [ProductController::class, 'on2'])->name('admin/pd2');
+    Route::get('admin/user', [UsersController::class, 'index'])->name('admin/user');
+    Route::get('admin/deposits', [TransactionController::class, 'in'])->name('admin/deposits');
+    Route::get('admin/request', [WithadController::class, 'index'])->name('admin/request');
+    Route::get('admin/approved/{id}', [WithadController::class, 'approve'])->name('admin/approved');
+    Route::get('admin/disapproved/{id}', [WithadController::class, 'disapprove'])->name('admin/disapproved');
+    Route::get('admin/done/{id}', [\App\Http\Controllers\Marktransaction::class, 'accepttransaction'])->name('admin/done');
+    Route::get('admin/bills', [TransactionController::class, 'bill'])->name('admin/bills');
+    Route::get('admin/giveaway', [BonusController::class, 'giveawayall'])->name('admin/giveaway');
+    Route::get('admin/claim', [BonusController::class, 'claimby'])->name('admin/claim');
+    Route::get('admin/finddeposite', [TransactionController::class, 'index'])->name('admin/finddeposite');
+    Route::post('admin/depo', [TransactionController::class, 'finduser'])->name('admin/depo');
+    Route::post('admin/date', [QueryController::class, 'querydeposi'])->name('admin/date');
+    Route::post('admin/datebill', [QueryController::class, 'querybilldate'])->name('admin/datebill');
+    Route::get('admin/depositquery', [QueryController::class, 'queryindex'])->name('admin/depositquery');
+    Route::get('admin/billquery', [QueryController::class, 'billdate'])->name('admin/billquery');
+    Route::get('admin/server', [UsersController::class, 'server'])->name('admin/server');
+
+    Route::get('admin/server', [UsersController::class, 'server'])->name('admin/server');
+    Route::get('admin/noti', [UsersController::class, 'mes'])->name('admin/noti');
+    Route::get('admin/air', [ProductController::class, 'air'])->name('admin/air');
+
+    Route::get('admin/up/{id}', [UsersController::class, 'up'])->name('admin/up');
+    Route::get('admin/up1/{id}', [ProductController::class, 'pair'])->name('admin/up1');
+    Route::get('admin/profile/{username}', [UsersController::class, 'profile'])->name('admin/profile');
+//    Route::get('admin/delete/{id}', [UserController::class, 'deleteuser'])->name('admin/delete');
 });

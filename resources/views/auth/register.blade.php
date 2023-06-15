@@ -13,15 +13,6 @@
     <!-- Library / Plugin Css Build -->
     <link rel="stylesheet" href="{{asset('auth/assets/css/core/libs.min.css')}}">
 
-
-
-
-
-
-
-
-
-
     <!-- qompac-ui Design System Css -->
     <link rel="stylesheet" href="{{asset('auth/assets/css/qompac-ui.minf700.css?v=1.0.1')}}">
 
@@ -294,22 +285,6 @@
 
                                     </script>
                                     <p class="text-center my-3">or sign in with other accounts?</p>
-                                    <div class="d-flex justify-content-center">
-                                        <ul class="list-group list-group-horizontal list-group-flush">
-                                            <li class="list-group-item border-0 pb-0">
-                                                <a href="#"><img src="https://templates.iqonic.design/product/qompac-ui/html/dist/assets/images/brands/gm.svg" alt="gm" loading="lazy"></a>
-                                            </li>
-                                            <li class="list-group-item border-0 pb-0">
-                                                <a href="#"><img src="https://templates.iqonic.design/product/qompac-ui/html/dist/assets/images/brands/fb.svg" alt="fb" loading="lazy"></a>
-                                            </li>
-                                            <li class="list-group-item border-0 pb-0">
-                                                <a href="#"><img src="https://templates.iqonic.design/product/qompac-ui/html/dist/assets/images/brands/im.svg" alt="im" loading="lazy"></a>
-                                            </li>
-                                            <li class="list-group-item border-0 pb-0">
-                                                <a href="#"><img src="https://templates.iqonic.design/product/qompac-ui/html/dist/assets/images/brands/li.svg" alt="li" loading="lazy"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
                                     <p class="mt-3 text-center">
                                         Already have an Account <a href="{{route('login')}}" class="text-underline">Sign In</a>
                                     </p>
