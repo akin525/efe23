@@ -13,25 +13,24 @@ class LoginController
 public function login(Request $request)
 {
 
+    $request->validate([
+        'email' => 'required',
+        'password' => 'required',
+    ]);
 
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
+    $user = User::where('email', $request->email)
+        ->where('role', 'admin')
+        ->first();
 
-        $user = User::where('email', $request->email)
-            ->where('password', Hash::make($request->password))->where('role', 'admin')
-            ->first();
+    if (!isset($user) || !Hash::check($request->password, $user->password)) {
+        return redirect()->back()->withInput($request->only('email', 'remember'))
+            ->withErrors(['admin' => 'Invalid credentials or you have not been assigned as an admin.']);
+    }
 
-        if (!isset($user)) {
-            return redirect()->back()->withInput($request->only('username', 'remember'))
-                ->withErrors(['admin' => 'You have not been assign as admin.']);
-        }
+    Auth::login($user);
 
-        Auth::login($user);
+    return redirect()->intended('admin/dashboard')->withSuccess('Signed in');
 
-        return redirect()->intended('admin/dashboard')
-            ->withSuccess('Signed in');
 }
 public function index()
 {
