@@ -23,7 +23,9 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TransController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use RealRashid\SweetAlert\Facades\Alert;
 
 /*
 |--------------------------------------------------------------------------
@@ -108,6 +110,10 @@ Route::middleware([
 
 });
 
+Route::get('/logout', function(){
+    Auth::logout();
+    return view('auth.login')->with('success', 'Logout Successful');
+});
 Route::middleware(['auth', 'admin'])->group(function () {
 Route::get('admin/dashboard', [DashboardsController::class, 'dashboard'])->name('admin/dashboard');
     Route::get('admin/pd2/{id}', [ProductController::class, 'on2'])->name('admin/pd2');
