@@ -11,10 +11,7 @@ class LoginController
 {
 public function login(Request $request)
 {
-    if (Auth()->user()->role == "admin") {
-        return redirect()->intended('admin/dashboard')
-            ->withSuccess('Signed in');
-    } else {
+
 
         $request->validate([
             'email' => 'required',
@@ -34,7 +31,6 @@ public function login(Request $request)
 
         return redirect()->intended('admin/dashboard')
             ->withSuccess('Signed in');
-    }
 }
 public function index()
 {

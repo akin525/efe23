@@ -146,6 +146,7 @@ Route::get('admin/dashboard', [DashboardsController::class, 'dashboard'])->name(
     Route::post('admin/pass', [VertualAController::class, 'pass'])->name('admin/pass');
     Route::get('admin/credit', [CandCController::class, 'cr'])->name('admin/credit');
     Route::post('admin/cr', [CandCController::class, 'credit'])->name('admin/cr');
+    Route::post('admin/ref', [CandCController::class, 'refund'])->name('admin/ref');
     Route::post('admin/ch', [CandCController::class, 'charge'])->name('admin/ch');
     Route::post('admin/finduser', [UsersController::class, 'finduser'])->name('admin/finduser');
     Route::get('admin/finds', [UsersController::class, 'fin'])->name('admin/finds');

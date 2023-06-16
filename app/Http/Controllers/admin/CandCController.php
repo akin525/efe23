@@ -91,6 +91,49 @@ public function credit(Request $request)
 
 
 }
+public function refund(Request $request)
+{
+    $request->validate([
+        'username' => 'required',
+        'amount' => 'required',
+        'refid' => 'required',
+    ]);
+    if (Auth()->user()->role == "admin") {
+
+
+        $user = User::where('username', $request->username)->first();
+        if (!isset($user)){
+            $mg='Username not found';
+            return response()->json($mg, Response::HTTP_BAD_REQUEST);
+
+
+        }
+        $wallet = wallet::where('username', $request->username)->first();
+
+        $depo = deposit::where('refid',$request->refid)->first();
+        if (isset($depo)) {
+            $mg= 'Duplicate Transaction';
+            return response()->json($mg, Response::HTTP_CONFLICT);
+
+        } else {
+            $gt = $wallet->balance + $request->amount;
+            $transaction=transaction::create([
+                'username'=>$request->username,
+                'activities'=>'Being Re-Fund ₦'.$request->amount.' By Admin',
+            ]);
+
+            $wallet->balance = $gt;
+            $wallet->save();
+            $mo=$request->username." was successful re-fund with NGN".$request->amount;
+
+            return response()->json(['status'=>'success', 'message'=>$mo]);
+
+        }
+    }
+    return redirect("admin/login")->with('status', 'You are not allowed to access');
+
+
+}
 public function sp()
 {
     $ch=charp::get();
