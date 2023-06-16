@@ -19,7 +19,7 @@ public function login(Request $request)
             'password' => 'required',
         ]);
 
-        $user = User::where('email', $request->username)
+        $user = User::where('email', $request->email)
             ->where('password', Hash::make($request->password))->where('role', 'admin')
             ->first();
 
