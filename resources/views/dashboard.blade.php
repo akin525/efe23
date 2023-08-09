@@ -1,6 +1,8 @@
 @extends('layouts.sidebar')
 @section('tittle','Dashboard')
 @section('content')
+    <script src="{{ asset('js/Chart.min.js') }}"></script>
+
     <div class="row">
         <div class="col-xl-6">
             <div class="card overflow-hidden">
@@ -40,6 +42,8 @@
                 </div>
             </div>
         </div>
+
+
         <div class="col-xl-3 col-md-6">
             <div class="card" style="background: #394758!important">
                 <div class="card-header border-0">
@@ -59,6 +63,29 @@
                             <span>Bonus</span>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Deposit Chart</h4>
+                </div>
+                <div class="card-body">
+                    <canvas id="transactionChart" class="flot-chart"></canvas>
+{{--                    <div id="transactionChart" class="flot-chart"></div>--}}
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Purchase Chart</h4>
+                </div>
+                <div class="card-body">
+                    <canvas id="transactionChart1" class="flot-chart"></canvas>
                 </div>
             </div>
         </div>
@@ -378,5 +405,96 @@
             });
         });
 
+    </script>
+    <script>
+        var ctx = document.getElementById('transactionAreaChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {!! json_encode($dates) !!},
+                datasets: [{
+                    label: 'Transaction Amount',
+                    data: {!! json_encode($amounts) !!},
+                    backgroundColor: 'rgba(250,189,6,0.95)',
+                    borderColor: 'rgb(114,222,12)',
+                    borderWidth: 1,
+                    fill: 'origin' // To fill the area below the line
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'time', // Assuming transaction_date is a date field
+                        time: {
+                            unit: 'day' // Display by day
+                        }
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+    <script>
+        fetch('/transaction')
+            .then(response => response.json())
+            .then(data => {
+                var ctx = document.getElementById('transactionChart').getContext('2d');
+
+                var chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.dates,
+                        datasets: [{
+                            label: 'Deposit Amount',
+                            data: data.amounts,
+                            backgroundColor: 'rgb(33,114,11)',
+                            borderColor: 'rgb(33,114,11)',
+                            borderWidth: 1,
+                            fill: 'origin' // Fill the area below the line
+
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+    </script>
+    <script>
+        fetch('/transaction1')
+            .then(response => response.json())
+            .then(data => {
+                var ctx = document.getElementById('transactionChart1').getContext('2d');
+
+                var chart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: data.dates,
+                        datasets: [{
+                            label: 'Purchase Charts',
+                            data: data.amounts,
+                            backgroundColor: 'rgba(211,161,11,0.95)',
+                            borderColor: 'rgba(211,161,11,0.95)',
+                            borderWidth: 1,
+                            fill: 'origin' // Fill the area below the line
+
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
     </script>
 @endsection

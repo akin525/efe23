@@ -18,12 +18,14 @@
     <link href="{{asset('dashboard/vendor/bootstrap-select/dist/css/bootstrap-select.min.css')}}" rel="stylesheet">
     <link href="{{asset('dashboard/vendor/dropzone/dist/dropzone.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('dashboard/cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.4/nouislider.min.css')}}">
+    <script src="{{ asset('js/chart.js') }}"></script>
 
     <!-- SweetAlert CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
 
     <!-- SweetAlert JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- tagify-css -->
     <link href="{{asset('dashboard/vendor/tagify/dist/tagify.css')}}" rel="stylesheet">
@@ -410,6 +412,11 @@
 <!-- Dashboard 1 -->
 <script src="{{asset('dashboard/js/dashboard/analytics.js')}}"></script>
 
+<script src="{{asset('dashboard/vendor/flot/jquery.flot.js')}}"></script>
+<script src="{{asset('dashboard/vendor/flot/jquery.flot.pie.js')}}"></script>
+<script src="{{asset('dashboard/vendor/flot/jquery.flot.resize.js')}}"></script>
+<script src="{{asset('dashboard/vendor/flot-spline/jquery.flot.spline.min.js')}}"></script>
+<script src="{{asset('dashboard/js/plugins-init/flot-init.js')}}"></script>
 
 <!-- Datatable -->
 <script src="{{asset('dashboard/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>

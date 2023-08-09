@@ -108,6 +108,9 @@ Route::middleware([
     Route::get('advert', [TransController::class, 'alladvert'])->name('advert');
 
 
+
+    Route::get('/transaction', [DashboardController::class, 'getTransactions']);
+    Route::get('/transaction1', [DashboardController::class, 'getTransactions1']);
 });
 
 Route::get('/logout', function(){
