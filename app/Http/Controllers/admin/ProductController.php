@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Models\airtimecon;
+use App\Models\airtimecons;
 use App\Models\big;
 use App\Models\data;
 use App\Models\easy;
@@ -167,7 +167,7 @@ public function air()
 
 public function pair(Request $request)
 {
-    $air = airtimecon::where('id', $request->id)->first();
+    $air = airtimecons::where('id', $request->id)->first();
     if ($air->status == 1){
         $na= '0';
     }elseif ($air->status == 0){

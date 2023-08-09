@@ -174,4 +174,8 @@ Route::get('admin/dashboard', [DashboardsController::class, 'dashboard'])->name(
     Route::get('admin/editproduct/{id}', [ProductController::class, 'in'])->name('admin/editproduct');
     Route::get('admin/pd/{id}', [ProductController::class, 'on'])->name('admin/pd');
     Route::get('admin/pd1/{id}', [ProductController::class, 'on1'])->name('admin/pd1');
+
+
+    Route::get('admin/cserver', [\App\Http\Controllers\admin\CreateServerController::class, 'createnewserver'])->name('admin/cserver');
+    Route::post('admin/cserver1', [\App\Http\Controllers\admin\CreateServerController::class, 'postnewserver'])->name('admin/cserver1');
 });

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Console\encription;
 use App\Mail\Emailtrans;
+use App\Models\airtimecons;
 use App\Models\bill;
 use App\Models\Comission;
 use App\Models\data;
+use App\Models\server;
 use App\Models\transaction;
 use App\Models\User;
 use App\Models\wallet;
@@ -28,7 +29,7 @@ class AirtimeController
             'refid'=>'required',
         ]);
 
-        $user = User::find($request->user()->id);
+        $user = User::where('username', Auth::user()->username)->first();
         $wallet = wallet::where('username', $user->username)->first();
         if ($wallet->balance < $request->amount) {
             $mg = "You Cant Make Purchase Above" . "NGN" . $request->amount . " from your wallet. Your wallet balance is NGN $wallet->balance. Please Fund Wallet And Retry or Pay Online Using Our Alternative Payment Methods.";
@@ -40,8 +41,8 @@ class AirtimeController
             $mg = "error transaction";
             return response()->json($mg, Response::HTTP_BAD_REQUEST);
         }
-        $bo = bill::where('transactionid', $request->refid)->first();
-        if (isset($bo)) {
+        $bo1 = bill::where('transactionid', $request->refid)->first();
+        if (isset($bo1)) {
             $mg = "duplicate transaction, kindly reload this page";
             return response()->json( $mg, Response::HTTP_CONFLICT);
 
@@ -85,72 +86,123 @@ class AirtimeController
                     $bo['name']=$user->name;
                     $bo['email']=Auth::user()->email;
 
-                    $resellerURL = 'https://integration.mcd.5starcompany.com.ng/api/reseller/';
-                    $curl = curl_init();
 
-                    curl_setopt_array($curl, array(
-                        CURLOPT_URL =>$resellerURL.'pay',
-                        CURLOPT_RETURNTRANSFER => true,
-                        CURLOPT_ENCODING => '',
-                        CURLOPT_MAXREDIRS => 10,
-                        CURLOPT_TIMEOUT => 0,
-                        CURLOPT_FOLLOWLOCATION => true,
-                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                        CURLOPT_SSL_VERIFYHOST => 0,
-                        CURLOPT_SSL_VERIFYPEER => 0,
-                        CURLOPT_CUSTOMREQUEST => 'POST',
-                        CURLOPT_POSTFIELDS => array('service' => 'airtime', 'coded' => $request->id, 'phone' => $request->number, 'amount' => $request->amount, 'reseller_price' => $request->amount),
+            $object = json_decode($request);
 
-                        CURLOPT_HTTPHEADER => array(
-                            'Authorization: mcd_key_aq9vGp2N8679cX3uAU7zIc3jQfd'
-                        )));
+            $daterserver = new AirtimeserverController();
+            $mcd = airtimecons::where('status', "1")->first();
 
-                    $response = curl_exec($curl);
+//            return response()->json([
+//                'status'=>'success',
+//                'message'=>$mcd. $request,
+//            ]);
+           if ($mcd->server == "mcd"){
+                $response = $daterserver->mcdbill1($object);
 
-                    curl_close($curl);
-//                    return $response;
-                    $data = json_decode($response, true);
-                    $success = $data["success"];
-                    if ($success == 1) {
+                $data = json_decode($response, true);
+                return response()->json([
+                    'status'=>'success',
+                    'message'=>$response,
+                ]);
+                $success = $data["success"];
+                if ($success == 1) {
 
-                        $update=bill::where('id', $bo->id)->update([
-                            'server_response'=>$response,
-                            'status'=>1,
-                        ]);
-                        $am = "NGN $request->amount  Airtime Purchase Was Successful To";
-                        $ph = $request->number;
+                    $update=bill::where('id', $bo->id)->update([
+                        'server_response'=>$response,
+                        'status'=>1,
+                    ]);
+                    $am = "NGN $request->amount  Airtime Purchase Was Successful To";
+                    $ph = $request->number;
 
-                        $com=$wallet->bonus+$comission;
-                        $wallet->bonus=$com;
-                        $wallet->save();
+                    $com=$wallet->bonus+$comission;
+                    $wallet->bonus=$com;
+                    $wallet->save();
 
-                        $parise=$comission."₦ Commission Is added to your wallet balance";
-                        $receiver = $user->email;
-                        $admin = 'info@efemobilemoney.com';
+                    $parise=$comission."₦ Commission Is added to your wallet balance";
+                    $receiver = $user->email;
+                    $admin = 'info@efemobilemoney.com';
 
 
-                        Mail::to($receiver)->send(new Emailtrans($bo));
-                        Mail::to($admin)->send(new Emailtrans($bo));
-                        return response()->json([
-                            'status' => 'success',
-                            'message' => $am.' ' .$ph.' & '.$parise,
+                    Mail::to($receiver)->send(new Emailtrans($bo));
+                    Mail::to($admin)->send(new Emailtrans($bo));
+                    return response()->json([
+                        'status' => 'success',
+                        'message' => $am.' ' .$ph.' & '.$parise,
 //                            'data' => $responseData // If you want to include additional data
-                        ]);
-                    } elseif ($success == 0) {
+                    ]);
+                } elseif ($success == 0) {
 
-                        $am = "Contact your Admin";
-                        $ph = ", Transaction fail";
+                    $am = "Contact your Admin";
+                    $ph = ", Transaction fail";
 
 //                        Alert::error('error', $am.' ' .$ph);
 //                        return redirect()->route('viewpdf', $bo->id);
 
-                        return response()->json([
-                            'status' => 'fail',
-                            'message' => $response,
+                    return response()->json([
+                        'status' => 'fail',
+                        'message' => $response,
 //                            'message' => $am.' ' .$ph,
 //                            'data' => $responseData // If you want to include additional data
-                        ]);
-                    }
+                    ]);
+                }
+            }elseif ($mcd->server == "easyaccess"){
+                $response = $daterserver->easyaccess($object);
+                $data = json_decode($response, true);
+
+                if ($data['success']== 'true') {
+
+                    $success=1;
+                    $update=bill::where('id', $bo->id)->update([
+                        'server_response'=>$response,
+                        'status'=>1,
+                    ]);
+                    $name = "Airtime";
+                    $am = "NGN $request->amount  Airtime Purchase Was Successful To";
+                    $ph = $request->number;
+
+                    $receiver = $user->email;
+                    $admin = 'info@amazingdata.com.ng';
+
+                    Mail::to($receiver)->send(new Emailtrans($bo));
+                    Mail::to($admin)->send(new Emailtrans($bo));
+                    return response()->json([
+                        'status' => 'success',
+                        'message' => $am.' '.$ph,
+                        'id'=>$bo['id'],
+                    ]);
+                } elseif ($data['message']== 'Possible duplicate transaction, Please retry after 2 minutes') {
+                    $zo = $user->balance + $request->amount;
+                    $user->balance = $zo;
+                    $user->save();
+                    $success=0;
+                    $name = 'Airtime';
+                    $am = "NGN $request->amount Was Refunded To Your Wallet";
+                    $ph = ", Possible duplicate transaction, Please retry after 2 minutesl";
+
+                    return response()->json([
+                        'status' => 'fail',
+                        'message' => $am.' ' .$ph,
+//                            'data' => $responseData // If you want to include additional data
+                    ]);
+
+                } elseif ($data['success']== 'false') {
+                    $zo = $user->wallet + $request->amount;
+                    $user->wallet = $zo;
+                    $user->save();
+                    $success=0;
+                    $name = 'Airtime';
+                    $am = "NGN $request->amount Was Refunded To Your Wallet";
+                    $ph = ", Transaction fail";
+                    return response()->json([
+                        'status' => 'fail',
+                        'message' => $response,
+//                            'message' => $am.' ' .$ph,
+//                            'data' => $responseData // If you want to include additional data
+                    ]);
+
+                }
+            }
+
                 }
 
             }

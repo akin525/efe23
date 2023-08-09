@@ -24,11 +24,18 @@
                                                 </label>
                                                 <div class="">
                                                     <select name="id" class="text-success form-control" required="">
-
+                                                        <option>Select your network</option>
+                                                    @if($server->server == "mcd")
                                                         <option value="m">MTN</option>
                                                         <option value="g">GLO</option>
                                                         <option value="a">AIRTEL</option>
                                                         <option value="9">9MOBILE</option>
+                                                            @elseif($server->server =="easyaccess")
+                                                            <option value="01">MTN</option>
+                                                            <option value="02">GLO</option>
+                                                            <option value="03">AIRTEL</option>
+                                                            <option value="04">9MOBILE</option>
+                                                        @endif
 
                                                     </select>
                                                 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\airtimecons;
 use App\Models\bill;
 use App\Models\bo;
 use App\Models\data;
@@ -12,6 +13,7 @@ use App\Models\wallet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DashboardController
 {
@@ -72,8 +74,14 @@ class DashboardController
 
     public function airtimeindex()
     {
-
-        return view('bills.airtime');
+        $server=airtimecons::where('status', 1)->first();
+        if ($server) {
+            return view('bills.airtime', compact('server'));
+        }else{
+            $mg="No service";
+            Alert::success('oops', $mg);
+            return back();
+        }
 
     }
 
