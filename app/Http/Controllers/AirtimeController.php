@@ -87,26 +87,13 @@ class AirtimeController
                     $bo['name']=$user->name;
                     $bo['email']=Auth::user()->email;
 
-
-//            $object = json_decode($request);
-//            $object->number = $request->number;
-//            $json = json_encode($object);
             $daterserver = new AirtimeserverController();
             $mcd = airtimecons::where('status', "1")->first();
 
-//            return response()->json([
-//                'status'=>'success',
-//                'message'=>$request,
-//            ]);
            if ($mcd->server == "mcd"){
                 $response = $daterserver->mcdbill1($request);
 
                 $data = json_decode($response, true);
-//                return response()->json([
-//                    'status'=>'success',
-//                    'message'=>$request,
-//                ]);
-//               return response()->json( $response, Response::HTTP_BAD_REQUEST);
 
                $success = $data["success"];
                 if ($success == 1) {

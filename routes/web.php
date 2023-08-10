@@ -177,5 +177,7 @@ Route::get('admin/dashboard', [DashboardsController::class, 'dashboard'])->name(
 
 
     Route::get('admin/cserver', [\App\Http\Controllers\admin\CreateServerController::class, 'createnewserver'])->name('admin/cserver');
+    Route::get('admin/dserver', [\App\Http\Controllers\admin\CreateServerController::class, 'createnewserver1'])->name('admin/dserver');
     Route::post('admin/cserver1', [\App\Http\Controllers\admin\CreateServerController::class, 'postnewserver'])->name('admin/cserver1');
+    Route::post('admin/dserver1', [\App\Http\Controllers\admin\CreateServerController::class, 'postnewserver1'])->name('admin/dserver1');
 });

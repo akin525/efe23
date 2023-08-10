@@ -26,13 +26,18 @@
                                     </label>
                                     <div class="">
                                         <select name="id" id="firstSelect" class="text-success form-control" required="">
-
                                             <option >Select Network</option>
+                                            @if($server->name =='mcd')
                                             <option value="mtn-data">MTN</option>
                                             <option value="glo-data">GLO</option>
                                             <option value="airtel-data">AIRTEL</option>
                                             <option value="etisalat-data">9MOBILE</option>
-
+                                            @elseif($server->name == 'easyaccess')
+                                                <option value="MTN">MTN</option>
+                                                <option value="GLO">GLO</option>
+                                                <option value="9MOBILE">9MOBILE</option>
+                                                <option value="AIRTEL">AIRTEL</option>
+                                            @endif
                                         </select>
                                     </div>
                                 </div>
@@ -135,7 +140,7 @@
 
                         // Append the received options to the second select box
                         $.each(response, function(index, option) {
-                            secondSelect.append('<option  value="' + option.id + '">' + option.name +  ' --₦' + option.tamount + '</option>');
+                            secondSelect.append('<option  value="' + option.id + '">' + @if($server->name =='mcd')option.name @elseif($server->name =='easyaccess')option.plan @endif +  ' --₦' + option.tamount + '</option>');
                         });
 
                         // Select the desired value dynamically

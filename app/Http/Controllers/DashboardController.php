@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\airtimecons;
+use App\Models\bank;
 use App\Models\bill;
 use App\Models\bo;
 use App\Models\data;
 use App\Models\deposit;
+use App\Models\easy;
+use App\Models\server;
 use App\Models\transaction;
 use App\Models\User;
 use App\Models\wallet;
@@ -87,15 +90,29 @@ class DashboardController
 
     function picknetwork()
     {
-        return view('bills.data');
+        $server=server::where('status', 1)->first();
+            if($server) {
+                return view('bills.data', compact('server'));
+            }else{
+
+                Alert::info('oops..', 'No service');
+                return back();
+            }
 
     }
 
     function netwplanrequest(Request $request, $selectedValue)
     {
+        $server=server::where('status', 1)->first();
 
-        $options = data::where('network', $selectedValue)->get();
-        return response()->json($options);
+        if ($server->name =='mcd') {
+            $options = data::where('network', $selectedValue)->get();
+            return response()->json($options);
+        }elseif($server->name == 'easyaccess'){
+            $options = easy::where('network', $selectedValue)->get();
+            return response()->json($options);
+        }
+
     }
 
     public function invoice(Request $request)

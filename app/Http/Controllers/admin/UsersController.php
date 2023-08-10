@@ -106,7 +106,9 @@ $wallet=wallet::where('username', $username)->first();
 
         $server->status=$u;
         $server->save();
-        return response()->json(['status'=>'success', 'message'=>'server update successful']);
+
+        return back();
+//        return response()->json(['status'=>'success', 'message'=>'server update successful']);
 
     }
     public function mes()

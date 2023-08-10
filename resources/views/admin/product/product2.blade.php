@@ -237,7 +237,7 @@
                             @foreach($product as $seller)
                                 <tr>
                                     <td> {{$seller->network}} </td>
-                                    <td> {{$seller->name}}</td>
+                                    <td > {{$seller->plan}}</td>
                                     <td> {{$seller->amount}}</td>
                                     <td> {{$seller->tamount}}</td>
                                     <td> {{$seller->ramount}}</td>
@@ -249,7 +249,7 @@
                                             <input type="checkbox" name="status" value="0" id="myCheckBox"
                                                    {{$seller->status =="1"?'checked':''}}
                                                    {{--                                            @if($pay->status==1?'checked':'')--}}
-                                                   onclick="window.location='{{route('admin/pd', $seller->id)}}'"/>
+                                                   onclick="window.location='{{route('admin/pd2', $seller->id)}}'"/>
                                             <!--                                            <button  type="submit" class="btn-info col-lg">Update</button>-->
                                             <span>
                                                 <span>off</span>
@@ -260,7 +260,7 @@
                                         </label>
                                     </td>
                                     <td>
-                                        <button  type="button" class="btn btn-outline-primary" onclick="openModal(this)" data-user-id="{{$seller->id}}" data-user-name="{{$seller->name}}" >
+                                        <button  type="button" class="btn btn-outline-primary" onclick="openModal(this)" data-user-id="{{$seller->id}}" data-user-name="{{$seller->plan}}" >
                                             <i class="fa fa-edit"></i>
                                         </button>
                                     </td>
@@ -376,58 +376,58 @@
 
                 // Get the form data
                 var formData = $(this).serialize();
-                // The user clicked "Yes", proceed with the action
-                // Add your jQuery code here
-                // For example, perform an AJAX request or update the page content
-                $('#loadingSpinner').show();
+                        // The user clicked "Yes", proceed with the action
+                        // Add your jQuery code here
+                        // For example, perform an AJAX request or update the page content
+                        $('#loadingSpinner').show();
 
-                $.ajax({
-                    url: "{{route('admin/do')}}",
-                    type: 'POST',
-                    data: formData,
-                    success: function(response) {
-                        // Handle the success response here
-                        $('#loadingSpinner').hide();
+                        $.ajax({
+                            url: "{{route('admin/do2')}}",
+                            type: 'POST',
+                            data: formData,
+                            success: function(response) {
+                                // Handle the success response here
+                                $('#loadingSpinner').hide();
 
-                        console.log(response);
-                        // Update the page or perform any other actions based on the response
+                                console.log(response);
+                                // Update the page or perform any other actions based on the response
 
-                        if (response.status == 'success') {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Success',
-                                text: response.message
-                            }).then(() => {
-                                location.reload(); // Reload the page
-                            });
-                        } else {
-                            Swal.fire({
-                                icon: 'info',
-                                title: 'Pending',
-                                text: response.message
-                            });
-                            // Handle any other response status
-                        }
+                                if (response.status == 'success') {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Success',
+                                        text: response.message
+                                    }).then(() => {
+                                        location.reload(); // Reload the page
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        icon: 'info',
+                                        title: 'Pending',
+                                        text: response.message
+                                    });
+                                    // Handle any other response status
+                                }
 
-                    },
-                    error: function(xhr) {
-                        $('#loadingSpinner').hide();
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'fail',
-                            text: xhr.responseText
+                            },
+                            error: function(xhr) {
+                                $('#loadingSpinner').hide();
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'fail',
+                                    text: xhr.responseText
+                                });
+                                // Handle any errors
+                                console.log(xhr.responseText);
+
+                            }
                         });
-                        // Handle any errors
-                        console.log(xhr.responseText);
-
-                    }
-                });
             });
         });
 
     </script>
-    @livewireScripts
 
+    @livewireScripts
     <script src="{{asset('dashboard/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('dashboard/vendor/datatables/js/dataTables.buttons.min.js')}}"></script>
     <script src="{{asset('dashboard/vendor/datatables/js/buttons.html5.min.js')}}"></script>

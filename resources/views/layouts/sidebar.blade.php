@@ -395,7 +395,42 @@
 
 
 </div>
+<style>
+    .float{
+        position:fixed;
+        width:60px;
+        height:60px;
+        bottom:40px;
+        left:40px;
+        background-color:#25d366;
+        color:#FFF;
+        border-radius:50px;
+        text-align:center;
+        font-size:30px;
+        box-shadow: 2px 2px 3px #999;
+        z-index:100;
+    }
+
+    .my-float{
+        margin-top:16px;
+    }
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<a href="https://wa.me/2348145095772/?text=Goodday, My Username is..... {{\Illuminate\Support\Facades\Auth::user()->username}}" class="float" target="_blank">
+    <i class="fa fa-whatsapp my-float"></i>
+</a>
 @yield('script')
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/6131f75fd6e7610a49b374cd/1feliskcr';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
 <!--**********************************
     Main wrapper end
 ***********************************-->
