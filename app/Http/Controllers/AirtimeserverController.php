@@ -55,7 +55,7 @@ class AirtimeserverController extends Controller
 
     public function mcdbill1($request)
     {
-        return $request;
+//        return $request;
 
         $resellerURL = 'https://integration.mcd.5starcompany.com.ng/api/reseller/';
         $curl = curl_init();
@@ -80,7 +80,7 @@ class AirtimeserverController extends Controller
         $response = curl_exec($curl);
 
         curl_close($curl);
-                    return $request;
+                    return $response;
     }
 
     public function easyaccess($request)

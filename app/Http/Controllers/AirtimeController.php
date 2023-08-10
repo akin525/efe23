@@ -28,6 +28,7 @@ class AirtimeController
             'number'=>['required', 'numeric',  'digits:11'],
             'refid'=>'required',
         ]);
+//        return response()->json( $request, Response::HTTP_BAD_REQUEST);
 
         $user = User::where('username', Auth::user()->username)->first();
         $wallet = wallet::where('username', $user->username)->first();
@@ -87,24 +88,27 @@ class AirtimeController
                     $bo['email']=Auth::user()->email;
 
 
-            $object = json_decode($request);
-
+//            $object = json_decode($request);
+//            $object->number = $request->number;
+//            $json = json_encode($object);
             $daterserver = new AirtimeserverController();
             $mcd = airtimecons::where('status', "1")->first();
 
 //            return response()->json([
 //                'status'=>'success',
-//                'message'=>$mcd. $request,
+//                'message'=>$request,
 //            ]);
            if ($mcd->server == "mcd"){
-                $response = $daterserver->mcdbill1($object);
+                $response = $daterserver->mcdbill1($request);
 
                 $data = json_decode($response, true);
-                return response()->json([
-                    'status'=>'success',
-                    'message'=>$response,
-                ]);
-                $success = $data["success"];
+//                return response()->json([
+//                    'status'=>'success',
+//                    'message'=>$request,
+//                ]);
+//               return response()->json( $response, Response::HTTP_BAD_REQUEST);
+
+               $success = $data["success"];
                 if ($success == 1) {
 
                     $update=bill::where('id', $bo->id)->update([
