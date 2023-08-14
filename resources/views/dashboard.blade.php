@@ -153,7 +153,7 @@
                         <div class="col-xl-10">
                             <div class="row">
                                 <div class="col-xl-2 col-sm-4 col-6">
-                                    <a href="{{route('select')}}">
+                                    <a href="{{url('pick')}}">
                                         <div class="card ov-card">
                                         <div class="card-body">
                                             <div class="ana-box">

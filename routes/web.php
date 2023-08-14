@@ -65,13 +65,15 @@ Route::middleware([
     Route::post('buyairtime', [AirtimeController::class, 'buyairtime'])->name('buyairtime');
 
 //    data route
+    Route::view('pick', 'bills.pick');
     Route::get('getOptions/{selectedValue}', [DashboardController::class, 'netwplanrequest'])->name('getOptions');
-    Route::get('select', [DashboardController::class, 'picknetwork'])->name('select');
+    Route::get('select/{request}', [DashboardController::class, 'picknetwork'])->name('select');
     Route::post('buydata', [BillController::class, 'bill'])->name('buydata');
 
 //    datapin route
     Route::get('datapin', [DataPinController::class, 'dataindex'])->name('datapin');
     Route::post('buypin', [DataPinController::class, 'processdatapin'])->name('buypin');
+
 
 //    tv route
     Route::get('listtv', [AlltvController::class, 'listtv'])->name('listtv');

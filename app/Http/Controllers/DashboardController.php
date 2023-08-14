@@ -88,11 +88,27 @@ class DashboardController
 
     }
 
-    function picknetwork()
+    function picknetwork($request)
     {
         $server=server::where('status', 1)->first();
+        $typeo='mtn-sme';
             if($server) {
-                return view('bills.data', compact('server'));
+                $netm=data::where('network', 'like', '%'.$request.'%')
+                    ->where('status', '1')->get();
+//                $sme=data::where('network', 'like', '%mtn-sme%')->where('status', '1')->first();
+
+//                return $sme;
+                $neta=easy::where('network', 'like', '%'.$request.'%')
+                    ->where('status', '1')->get();
+                $net9=easy::where('network', 'like', '%'.$request.'%')
+                    ->where('status', '1')->get();
+                $netg=easy::where('network','like', '%'.$request.'%')
+                    ->where('status', '1')->get();
+
+//                return $neta;
+
+                return view('bills.data', compact('net9', 'neta', 'netg', 'netm', 'server', 'request' ));
+
             }else{
 
                 Alert::info('oops..', 'No service');
