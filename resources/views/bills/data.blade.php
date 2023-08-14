@@ -124,8 +124,8 @@
                                             <div class="dropdown bootstrap-select default-select form-control wide mb-3 form-control-lg">
                                                 <select name="productid" class="default-select form-control wide mb-3 form-control-lg" id="secondSelect" tabindex="null">
                                                     <option>Select Your Plan</option>
-                                                @foreach($netg as $air)
-                                                    <option value={{$air['id']}}"">{{$air3['network']}} {{$air['plan']}} ₦{{$air['tamount']}}</option>
+                                                @foreach($netg as $air3)
+                                                    <option value={{$air3['id']}}"">{{$air3['network']}} {{$air3['plan']}} ₦{{$air3['tamount']}}</option>
                                                     @endforeach
                                                 </select>
 
