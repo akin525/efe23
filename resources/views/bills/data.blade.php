@@ -87,7 +87,7 @@
                                                 <select name="productid" class="default-select form-control wide mb-3 form-control-lg" id="secondSelect" tabindex="null">
                                                     <option>Select Your Plan</option>
                                                 @foreach($neta as $air)
-                                                    <option value={{$air['id']}}"">{{$air3['network']}} {{$air['plan']}} ₦{{$air['tamount']}}</option>
+                                                    <option value={{$air['id']}}"">{{$air['network']}} {{$air['plan']}} ₦{{$air['tamount']}}</option>
                                                     @endforeach
                                                 </select>
 
