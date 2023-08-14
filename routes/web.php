@@ -69,6 +69,7 @@ Route::middleware([
     Route::get('getOptions/{selectedValue}', [DashboardController::class, 'netwplanrequest'])->name('getOptions');
     Route::get('select/{request}', [DashboardController::class, 'picknetwork'])->name('select');
     Route::post('buydata', [BillController::class, 'bill'])->name('buydata');
+    Route::post('buydata1', [\App\Http\Controllers\EasyaccessDataController::class, 'sellfromeasyaccess'])->name('buydata1');
 
 //    datapin route
     Route::get('datapin', [DataPinController::class, 'dataindex'])->name('datapin');

@@ -22,9 +22,10 @@
         </div>
         <br/>
         <form id="dataForm">
+            @csrf
         <div class="input-group mb-3 input-success-o">
             <span class="input-group-text"><i class="fa fa-phone"></i> </span>
-            <input type="number" minlength="11" maxlength="11" id="number" class="form-control" placeholder="Phone number" required/>
+            <input type="number" name="number" minlength="11" maxlength="11" id="number" class="form-control" placeholder="Phone number" required/>
         </div>
 
         <div class="loading-overlay" id="loadingSpinner" style="display: none;">
@@ -48,8 +49,9 @@
                                 <div class="card overflow-hidden">
                                     <div class="row">
                                             <div class="dropdown bootstrap-select default-select form-control wide mb-3 form-control-lg">
-                                                <select class="default-select form-control wide mb-3 form-control-lg" id="secondSelect" tabindex="null">
-                                                    @foreach($netm as $mtn)
+                                                <select name="productid" class="default-select form-control wide mb-3 form-control-lg" id="secondSelect" tabindex="null">
+                                                    <option>Select Your Plan</option>
+                                                @foreach($netm as $mtn)
                                                     <option value={{$mtn['id']}}"">{{$mtn['name']}} ₦{{$mtn['tamount']}}</option>
                                                     @endforeach
                                                 </select>
@@ -60,6 +62,7 @@
                             </div>
                     </div>
                 </div>
+            <input type="hidden" name="refid" value="<?php echo rand(10000000, 999999999); ?>">
             <button type="submit" class="btn btn-primary">Purchase Now</button>
 
         </div>
@@ -81,10 +84,10 @@
                                 <div class="card overflow-hidden">
                                     <div class="row">
                                             <div class="dropdown bootstrap-select default-select form-control wide mb-3 form-control-lg">
-                                                <select class="default-select form-control wide mb-3 form-control-lg" id="secondSelect" tabindex="null">
+                                                <select name="productid" class="default-select form-control wide mb-3 form-control-lg" id="secondSelect" tabindex="null">
                                                     <option>Select Your Plan</option>
                                                 @foreach($neta as $air)
-                                                    <option value={{$air['id']}}"">{{$air['plan']}} ₦{{$air['tamount']}}</option>
+                                                    <option value={{$air['id']}}"">{{$air3['network']}} {{$air['plan']}} ₦{{$air['tamount']}}</option>
                                                     @endforeach
                                                 </select>
 
@@ -94,6 +97,85 @@
                             </div>
                     </div>
                 </div>
+
+            <input type="hidden" name="refid" value="<?php echo rand(10000000, 999999999); ?>">
+
+            <button type="submit" class="btn btn-primary">Purchase Now</button>
+
+        </div>
+            @endif
+
+        @if($request== "GLO")
+        <div class="accordion card accordion-with-icon" id="accordion-six">
+            <div class="accordion-item">
+                <div class="accordion-header  rounded-lg" id="headingOne" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-controls="collapseOne"   aria-expanded="true" role="button">
+                <img width="50" src="{{asset('glo.jpeg')}}" alt="#" />
+                    <span class="accordion-header-text">GLO DATA</span>
+                    <span class="accordion-header-indicator"></span>
+                </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion-one">
+                <br/>
+
+
+
+                            <div class="col-xl-3  col-sm-6">
+                                <div class="card overflow-hidden">
+                                    <div class="row">
+                                            <div class="dropdown bootstrap-select default-select form-control wide mb-3 form-control-lg">
+                                                <select name="productid" class="default-select form-control wide mb-3 form-control-lg" id="secondSelect" tabindex="null">
+                                                    <option>Select Your Plan</option>
+                                                @foreach($netg as $air)
+                                                    <option value={{$air['id']}}"">{{$air3['network']}} {{$air['plan']}} ₦{{$air['tamount']}}</option>
+                                                    @endforeach
+                                                </select>
+
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
+            <input type="hidden" name="refid" value="<?php echo rand(10000000, 999999999); ?>">
+
+            <button type="submit" class="btn btn-primary">Purchase Now</button>
+
+        </div>
+            @endif
+
+        @if($request== "9MOBILE")
+        <div class="accordion card accordion-with-icon" id="accordion-six">
+            <div class="accordion-item">
+                <div class="accordion-header  rounded-lg" id="headingOne" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-controls="collapseOne"   aria-expanded="true" role="button">
+                <img width="50" src="{{asset('9m.jpg')}}" alt="#" />
+                    <span class="accordion-header-text">9MOBILE DATA</span>
+                    <span class="accordion-header-indicator"></span>
+                </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion-one">
+                <br/>
+
+
+
+                            <div class="col-xl-3  col-sm-6">
+                                <div class="card overflow-hidden">
+                                    <div class="row">
+                                            <div class="dropdown bootstrap-select default-select form-control wide mb-3 form-control-lg">
+                                                <select name="productid" class="default-select form-control wide mb-3 form-control-lg" id="secondSelect" tabindex="null">
+                                                    <option>Select Your Plan</option>
+                                                @foreach($net9 as $air3)
+                                                    <option value={{$air3['id']}}"">{{$air3['network']}} {{$air3['plan']}} ₦{{$air3['tamount']}}</option>
+                                                    @endforeach
+                                                </select>
+
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
+            <input type="hidden" name="refid" value="<?php echo rand(10000000, 999999999); ?>">
+
             <button type="submit" class="btn btn-primary">Purchase Now</button>
 
         </div>
@@ -257,6 +339,81 @@
         });
 
     </script>
+    @if($request== "AIRTEL" || $request== "GLO" || $request== "9MOBILE")
+    <script>
+        $(document).ready(function() {
+            $('#dataForm').submit(function(e) {
+                e.preventDefault(); // Prevent the form from submitting traditionally
+                // Get the form data
+                var formData = $(this).serialize();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'Do you want to buy ' + document.getElementById("secondSelect").options[document.getElementById("secondSelect").selectedIndex].text + ' on ' + document.getElementById("number").value + '?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // The user clicked "Yes", proceed with the action
+                        // Add your jQuery code here
+                        // For example, perform an AJAX request or update the page content
+                        $('#loadingSpinner').show();
+                        $.ajax({
+                            url: "{{ route('buydata1') }}",
+                            type: 'POST',
+                            data: formData,
+                            success: function(response) {
+                                // Handle the success response here
+                                $('#loadingSpinner').hide();
+
+                                console.log(response);
+                                // Update the page or perform any other actions based on the response
+
+                                if (response.status == 'success') {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Success',
+                                        text: response.message
+                                    }).then(() => {
+                                        location.reload(); // Reload the page
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        icon: 'info',
+                                        title: 'Pending',
+                                        text: response.message
+                                    });
+                                    // Handle any other response status
+                                }
+
+                            },
+                            error: function(xhr) {
+                                $('#loadingSpinner').hide();
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'fail',
+                                    text: xhr.responseText
+                                });
+                                // Handle any errors
+                                console.log(xhr.responseText);
+
+                            }
+                        });
+
+
+                    }
+                });
+
+
+                // Send the AJAX request
+            });
+        });
+
+    </script>
+    @elseif($request== "mtn")
     <script>
         $(document).ready(function() {
             $('#dataForm').submit(function(e) {
@@ -330,4 +487,5 @@
         });
 
     </script>
+    @endif
 @endsection

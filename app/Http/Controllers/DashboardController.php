@@ -105,7 +105,7 @@ class DashboardController
                 $netg=easy::where('network','like', '%'.$request.'%')
                     ->where('status', '1')->get();
 
-//                return $neta;
+//                return $net9;
 
                 return view('bills.data', compact('net9', 'neta', 'netg', 'netm', 'server', 'request' ));
 

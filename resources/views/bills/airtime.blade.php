@@ -30,7 +30,7 @@
                                                         <option value="g">GLO</option>
                                                         <option value="a">AIRTEL</option>
                                                         <option value="9">9MOBILE</option>
-                                                            @elseif($server->server =="easyaccess")
+                                                        @elseif($server->server =="easyaccess")
                                                             <option value="01">MTN</option>
                                                             <option value="02">GLO</option>
                                                             <option value="03">AIRTEL</option>
