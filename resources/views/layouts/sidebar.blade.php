@@ -328,6 +328,14 @@
                         <span class="nav-text">My Account</span>
                     </a>
                 </li>
+                <li><a href="{{route('reseller')}}" class="" aria-expanded="false">
+                        <div class="menu-icon">
+                            <i class="fa fa-user-alt" style="font-size: x-large"></i>
+
+                        </div>
+                        <span class="nav-text">Upgrade Now</span>
+                    </a>
+                </li>
                 <li><a href="{{route('notification')}}" class="" aria-expanded="false">
                         <div class="menu-icon">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

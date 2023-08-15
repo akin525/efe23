@@ -7,6 +7,7 @@ use App\Models\deposit;
 use App\Models\setting;
 use App\Models\wallet;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use RealRashid\SweetAlert\Facades\Alert;
 use Session;
 use App\Models\User;
@@ -24,7 +25,7 @@ class ResellerController
 //            $wallet->account_name = $account;
 //            $wallet->save();
 
-            return view('reseller', compact('user', 'wallet'));
+            return view('reseller.reseller', compact('user', 'wallet'));
 
 
 
@@ -41,7 +42,7 @@ class ResellerController
 //            $wallet->account_name = $account;
 //            $wallet->save();
 
-            return view('upgrade', compact('user'));
+            return view('reseller.upgrade', compact('user'));
 
 
 
@@ -54,18 +55,22 @@ class ResellerController
             $wallet = wallet::where('username', $user->username)->first();
 
 
+            if (Auth::user()->apikey != null){
+                $mg="You are already a reseller";
+                return response()->json($mg, Response::HTTP_BAD_REQUEST);
+
+            }
 
             if ($wallet->balance < $request->amount) {
                 $mg = "You Cant Upgrade Your Account" . "NGN" . $request->amount . " from your wallet. Your wallet balance is NGN $wallet->balance. Please Fund Wallet And Retry or Pay Online Using Our Alternative Payment Methods.";
 
-                Alert::info('info', $mg);
-                return back();
+           return response()->json($mg, Response::HTTP_BAD_REQUEST);
             }
             if ($request->amount < 0) {
 
                 $mg = "error transaction";
-                Alert::info('info', $mg);
-                return back();
+                return response()->json($mg, Response::HTTP_BAD_REQUEST);
+
 
             }else {
                 $user = User::find($request->user()->id);
@@ -84,8 +89,10 @@ class ResellerController
                 $user->apikey = $token;
                 $user->save();
                 $mg="You Are Now A Reseller";
-                Alert::success('success', $mg);
-                return redirect("upgrade")->withSuccess('GOOD');
+                return response()->json([
+                    'status'=>'auccess',
+                    'message'=>$mg,
+                ]);
             }
 
 

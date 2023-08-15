@@ -21,6 +21,7 @@ use App\Http\Controllers\EkectController;
 use App\Http\Controllers\FundController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\ResellerController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TransController;
 use Illuminate\Support\Facades\Auth;
@@ -114,6 +115,13 @@ Route::middleware([
 
     Route::get('/transaction', [DashboardController::class, 'getTransactions']);
     Route::get('/transaction1', [DashboardController::class, 'getTransactions1']);
+
+//    upgrade route
+    Route::get('reseller', [ResellerController::class, 'sell'])->name('reseller');
+    Route::get('upgrade', [ResellerController::class, 'apiaccess'])->name('upgrade');
+    Route::post('mp', [ResellerController::class, 'reseller'])->name('mp');
+
+
 });
 
 Route::get('/logout', function(){

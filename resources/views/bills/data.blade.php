@@ -49,7 +49,7 @@
                                 <div class="card overflow-hidden">
                                     <div class="row">
                                             <div class="dropdown bootstrap-select default-select form-control wide mb-3 form-control-lg">
-                                                <select name="productid" class="default-select form-control wide mb-3 form-control-lg" id="secondSelect" tabindex="null">
+                                                <select name="productid" class="default-select form-control " id="secondSelect" >
                                                     <option>Select Your Plan</option>
                                                 @foreach($netm as $mtn)
                                                     <option value={{$mtn['id']}}"">{{$mtn['name']}} ₦{{$mtn['tamount']}}</option>

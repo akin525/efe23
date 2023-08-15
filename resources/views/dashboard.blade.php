@@ -11,9 +11,19 @@
                         <div class="c-con">
                             <h4 class="heading mb-0">{{$greet}}<strong>{{Auth::user()->username}}!!</strong></h4>
                             <span>Notification:</span>
-                            <p class="mt-3">Loading......</p>
+                            <h4 class="mt-3"><b>My Level</b></h4>
+                            <div class="d-flex justify-content-sm-start justify-content-center">
+                                @if(Auth::user()->apikey ==null)
+                                    <a href="#" class="btn btn-danger m-2">Customer</a>
+                                    <a href="{{route('reseller')}}" class="btn btn-success m-2">Upgrade</a>
+                                @else
+                                    <a href="#" class="btn btn-danger m-2">Reseller</a>
+                                    <a href="#" class="btn btn-success">Upgraded!</a>
+                                @endif
 
-                            <a href="#" class="btn btn-primary btn-sm">View Profile</a>
+
+                            </div>
+{{--                            <a href="#" class="btn btn-primary btn-sm">View Profile</a>--}}
                         </div>
                         <img src="{{asset('dashboard/images/analytics/developer_male.png')}}" class="harry-img" alt="">
 
