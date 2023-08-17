@@ -57,7 +57,7 @@
                             </div>
                             <button class="btn btn-danger rounded btn-block font-weight-bold py-2 my-4" type="submit">Generate</button>
                         </form>
-                        <a class="btn-success btn-block rounded text-center font-weight-bold py-2 my-4" href="{{route('dashboard')}}" style="text-decoration: none;">
+                        <a class="btn-success btn-block rounded text-center font-weight-bold py-2 my-4" href="{{route('account')}}" style="text-decoration: none;">
                             Back to Dashboard
                         </a>
                     </div>

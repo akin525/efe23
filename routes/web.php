@@ -120,6 +120,7 @@ Route::middleware([
     Route::get('reseller', [ResellerController::class, 'sell'])->name('reseller');
     Route::get('upgrade', [ResellerController::class, 'apiaccess'])->name('upgrade');
     Route::post('mp', [ResellerController::class, 'reseller'])->name('mp');
+    Route::view('vtu', 'reseller.vtu');
 
 
 });
