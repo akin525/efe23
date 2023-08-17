@@ -11,6 +11,7 @@ use App\Http\Controllers\admin\TransactionController;
 use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\admin\VertualAController;
 use App\Http\Controllers\admin\WithadController;
+use App\Http\Controllers\AdvertController;
 use App\Http\Controllers\AirtimeController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\DashboardController;
@@ -110,6 +111,9 @@ Route::middleware([
 //    task route
     Route::get('tasks', [TaskController::class, 'loadalltask'])->name('tasks');
     Route::get('advert', [TransController::class, 'alladvert'])->name('advert');
+    Route::get('myads', [AdvertController::class, 'myadsload'])->name('myads');
+    Route::post('padvert', [AdvertController::class, 'advert'])->name('padvert');
+
 
 
 
@@ -193,3 +197,58 @@ Route::get('admin/dashboard', [DashboardsController::class, 'dashboard'])->name(
     Route::post('admin/cserver1', [\App\Http\Controllers\admin\CreateServerController::class, 'postnewserver'])->name('admin/cserver1');
     Route::post('admin/dserver1', [\App\Http\Controllers\admin\CreateServerController::class, 'postnewserver1'])->name('admin/dserver1');
 });
+
+
+Route::get('/cover/{filename}', function ($filename) {
+    $path = storage_path('app/cover/' . $filename);
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+    return $response;
+})->name('cover');
+Route::get('/profile/{filename}', function ($filename ) {
+    $path = storage_path('app/profile/' . $filename);
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+    return $response;
+})->name('profile');
+Route::get('/banner0/{filename}', function ($filename) {
+    $path = storage_path('app/banner0/' . $filename);
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+    return $response;
+})->name('banner0');
+Route::get('/app/{filename}', function ($filename) {
+    $path = storage_path('app/myapp/' . $filename);
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+    return $response;
+})->name('app');
+Route::view('policy', 'policy');

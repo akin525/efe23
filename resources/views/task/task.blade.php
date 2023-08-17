@@ -49,6 +49,7 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-2 col-sm-4 col-6">
+                                    <a href="{{route('advert')}}">
                                     <div class="card ov-card">
                                         <div class="card-body">
                                             <div class="ana-box">
@@ -64,6 +65,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    </a>
                                 </div>
                                 <div class="col-xl-2 col-sm-4 col-6">
                                     <div class="card ov-card">

@@ -27,87 +27,132 @@
         }
 
     </style>
+    <div class="row">
+        <div class="loading-overlay" id="loadingSpinner" style="display: none;">
+            <div class="loading-spinner"></div>
+        </div>
+        <br/>
+        <br/>
+        <div class="widget-stat card bg-primary">
+            <div class="card-body  p-4">
+                <div class="media">
+									<span class="me-3">
+										<i class="la la-key"></i>
+									</span>
+                    <div class="media-body text-white">
+                        <p class="mb-1">Post Ads/Product</p>
+                        <h3 class="text-white">Advert</h3>
 
-    <div class="row card card-body">
+                        <small>Advertise your product with membership plan</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <form action="{{ route('padvert') }}" method="post" enctype="multipart/form-data">
+            @csrf
+        <div class="row">
+            <div class="col-xl-6">
+            <div class="row card card-body">
     <div class="pd-20 card-box mb-30">
         <div class="clearfix">
             <div class="pull-left">
-                <h4 class="text-blue h4">Kindly Fill All Necessary Space For Your Advert Request</h4>
+                <h4 class="text-blue h4"><b>Kindly Fill All Necessary Space For Your Advert Request</b></h4>
             </div>
         </div>
 
-        <form method="post" action="#" enctype="multipart/form-data">
-            @csrf
-            <div class="form-group row">
-                <label class="col-sm-12 col-md-2 col-form-label">Advert Name </label>
-                <div class="col-sm-12 col-md-10">
-                    <input class="form-control" type="text" name="name" required>
-                </div>
+            <div class="input-group mb-3 input-success-o">
+                <span class="input-group-text">Advert Name</span>
+                <input class="form-control" type="text" name="name" required>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-12 col-md-2 col-form-label">Advert Address</label>
-                <div class="col-sm-12 col-md-10">
-                    <input class="form-control" placeholder="Enter Your Full Address" type="text" name="address" required>
-                </div>
+            <div class="input-group mb-3 input-info-o">
+                <span class="input-group-text">Advert Address</span>
+                <input class="form-control" placeholder="Enter Your Full Address" type="text" name="address" required>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-12 col-md-2 col-form-label">Advert Duration</label>
-                <div class="col-sm-12 col-md-10">
-                    <input class="form-control datetimepicker" name="duration"  type="text" required>
-                </div>
+            <div class="input-group mb-3 input-primary">
+                <input class="form-control datetimepicker" name="duration" placeholder="Enter numbers of days"  type="text" required>
+                <span class="input-group-text border-0">Advert Duration</span>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-12 col-md-2 col-form-label">Category</label>
-                <div class="col-sm-12 col-md-10">
-                    <select class="form-control datetimepicker" name="category" required>
-                        <option value="Appliances">Appliances</option>
-                        <option value="Fashions">Fashions</option>
-                        <option value="Properties">Properties</option>
-                        <option value="Educations">Educations</option>
-                        <option value="Businesses">Businesses</option>
-                    </select>
-                </div>
+            <div class="input-group mb-3  input-success">
+                <span class="input-group-text border-0">Category</span>
+                <select class="form-control datetimepicker" name="category" required>
+                    <option value="Appliances">Appliances</option>
+                    <option value="Fashions">Fashions</option>
+                    <option value="Properties">Properties</option>
+                    <option value="Educations">Educations</option>
+                    <option value="Businesses">Businesses</option>
+                </select>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-12 col-md-2 col-form-label">Product Price</label>
-                <div class="col-sm-12 col-md-10">
-                    <input type="number" class="form-control " name="amount" placeholder="Enter Product amount" required>
+{{--            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />--}}
+            <div class="input-group mb-3 input-success-o">
+                <span class="input-group-text">Product Price</span>
+                <input type="number" class="form-control " name="amount" placeholder="Enter Product amount" required>
+            </div>
+{{--            <div class="input-group mb-3 input-primary">--}}
+{{--                <textarea class="form-control border-radius-0" id="summernote" name="text" placeholder="Enter text ..." required></textarea>--}}
+{{--                <span class="input-group-text border-0">Advert Content</span>--}}
+{{--            </div>--}}
 
-                </div>
+            <div class="input-group mb-3 input-info-o">
+                <span class="input-group-text">Telephone</span>
+                <input class="form-control" value="{{Auth::user()->phone}}" type="number" name="number" >
             </div>
 
-            <div class="form-group">
-                <label class="col-sm-12 col-md-2 col-form-label">Advert Content</label>
-                <div class="html-editor pd-20 card-box mb-30">
-                    {{--                        <textarea class="textarea_editor form-control border-radius-0" name="text" placeholder="Enter text ..." required></textarea>--}}
-                    <textarea class="form-control border-radius-0" name="text" placeholder="Enter text ..." required></textarea>
-
+            <div class="card-header">
+                <h4 class="card-title">Addition Image</h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form">
+                    <div class="dropzone">
+                        <div class="dlab-default dlab-message">
+                            <input class="dlab-button" name="add" id="fileInput2" type="file" required/>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="form-group row">
-                <label class="col-sm-12 col-md-2 col-form-label">Telephone</label>
-                <div class="col-sm-12 col-md-10">
-                    <input class="form-control" value="{{Auth::user()->number}}" type="number" name="number" >
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-12 col-md-2 col-form-label">Cover Image</label>
-                <form action="#" class="dropzone dlab-clickable">
-
-                    <div class="dlab-default dlab-message"><button class="dlab-button" type="button">Drop files here to upload</button></div></form>
-            </div>
-            <button type="submit" class="btn btn-success">Post</button>
-        </form>
 
     </div>
+            </div>
+    </div>
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-header">
+                            <h4 class="card-title">Advert Content</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="basic-form">
+                                    <div class="mb-3">
+                                        <textarea class="form-txtarea form-control" name="text" rows="8" ></textarea>
+                                    </div>
+                            </div>
+                        </div>
+                        {{--            <div id="summernote">Hello Summernote</div>--}}
 
-</div>
+                        <div class="card-header">
+                            <h4 class="card-title">Cover Image</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="basic-form">
+                                <div class="dropzone dlab-clickable">
+
+                                    <div class="dlab-default dlab-message">
+                                        <input class="dlab-button" name="cover"  type="file" required/>
+                                    </div>
+                                </div>
+                                </div>
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary">Post Advert</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </form>
+    </div>
 @endsection
 @section('script')
     <script src="{{asset('dashboard/vendor/dropzone/dist/dropzone.js')}}"></script>
     <script src="{{asset('dashboard/vendor/global/global.min.js')}}"></script>
     <script src="{{asset('dashboard/vendor/jquery-nice-select/js/jquery.nice-select.min.js')}}"></script>
-    <script src="{{asset('dashboard/vendor/bootstrap-select/dist/js/bootstrap-select.min.js')}}"></script>
-
 @endsection
