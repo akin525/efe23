@@ -75,12 +75,12 @@
         @if($request== "AIRTEL")
         <div class="accordion card accordion-with-icon" id="accordion-six">
             <div class="accordion-item">
-                <div class="accordion-header  rounded-lg" id="headingTwo" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-controls="collapseTwo"   aria-expanded="true" role="button">
+                <div class="accordion-header collapsed rounded-lg" id="headingTwo" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-controls="collapseTwo"   role="button" aria-expanded="true">
                 <img width="50" src="{{asset('air.jpg')}}" alt="#" />
                     <span class="accordion-header-text">AIRTEL DATA</span>
                     <span class="accordion-header-indicator"></span>
                 </div>
-                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordion-one">
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion-one">
                 <br/>
 
 
@@ -123,7 +123,7 @@
                     <span class="accordion-header-text">GLO DATA</span>
                     <span class="accordion-header-indicator"></span>
                 </div>
-                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordion-one">
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion-one">
                 <br/>
 
 
@@ -164,7 +164,7 @@
                     <span class="accordion-header-text">9MOBILE DATA</span>
                     <span class="accordion-header-indicator"></span>
                 </div>
-                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordion-one">
+                <div id="collapseTwo" class="collapse " aria-labelledby="headingTwo" data-bs-parent="#accordion-one">
                 <br/>
 
 
