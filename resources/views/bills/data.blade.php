@@ -49,23 +49,24 @@
                                 <div class="card card-body overflow-hidden">
                                     <div class="row">
                                             <div class="dropdown bootstrap-select default-select form-control wide mb-3 form-control-lg">
-                                                <br>
-                                                <br>
-                                                <br>
-                                                <select name="productid" class="default-select form-control " id="secondSelect" >
-                                                    <option>Select Your Plan</option>
-                                                @foreach($netm as $mtn)
-                                                    <option value={{$mtn['id']}}"">{{$mtn['name']}} ₦{{$mtn['tamount']}}</option>
-                                                    @endforeach
-                                                </select>
-                                                <br>
-                                                <br>
+{{--                                                <br>--}}
+{{--                                                <br>--}}
+{{--                                                <br>--}}
+
+{{--                                                <br>--}}
+{{--                                                <br>--}}
                                             </div>
                                     </div>
                                 </div>
                             </div>
                     </div>
                 </div>
+            <select name="productid" class="default-select form-control " id="secondSelect" >
+                <option>Select Your Plan</option>
+                @foreach($netm as $mtn)
+                    <option value={{$mtn['id']}}"">{{$mtn['name']}} ₦{{$mtn['tamount']}}</option>
+                @endforeach
+            </select>
             <input type="hidden" name="refid" value="<?php echo rand(10000000, 999999999); ?>">
             <button type="submit" class="btn btn-primary">Purchase Now</button>
 
@@ -88,17 +89,12 @@
                                 <div class="card card-body overflow-hidden">
                                     <div class="row">
                                             <div class="dropdown bootstrap-select default-select form-control wide mb-3 form-control-lg">
-                                                <br>
-                                                <br>
-                                                <br>
-                                                <select name="productid" class="default-select form-control wide mb-3 form-control-lg" id="secondSelect" tabindex="null">
-                                                    <option>Select Your Plan</option>
-                                                @foreach($neta as $air)
-                                                    <option value={{$air['id']}}"">{{$air['network']}} {{$air['plan']}} ₦{{$air['tamount']}}</option>
-                                                    @endforeach
-                                                </select>
-                                                <br>
-                                                <br>
+{{--                                                <br>--}}
+{{--                                                <br>--}}
+{{--                                                <br>--}}
+
+{{--                                                <br>--}}
+{{--                                                <br>--}}
                                             </div>
                                     </div>
                                 </div>
@@ -106,6 +102,12 @@
                     </div>
                 </div>
 
+            <select name="productid" class="default-select form-control wide mb-3 form-control-lg" id="secondSelect" tabindex="null">
+                <option>Select Your Plan</option>
+                @foreach($neta as $air)
+                    <option value={{$air['id']}}"">{{$air['network']}} {{$air['plan']}} ₦{{$air['tamount']}}</option>
+                @endforeach
+            </select>
             <input type="hidden" name="refid" value="<?php echo rand(10000000, 999999999); ?>">
 
             <button type="submit" class="btn btn-primary">Purchase Now</button>
@@ -129,24 +131,24 @@
                                 <div class="card card-body overflow-hidden">
                                     <div class="row">
                                             <div class="dropdown bootstrap-select default-select form-control wide mb-3 form-control-lg">
-                                                <br>
-                                                <br>
-                                                <br>
-                                                <select name="productid" class="default-select form-control wide mb-3 form-control-lg" id="secondSelect" tabindex="null">
-                                                    <option>Select Your Plan</option>
-                                                @foreach($netg as $air3)
-                                                    <option value={{$air3['id']}}"">{{$air3['network']}} {{$air3['plan']}} ₦{{$air3['tamount']}}</option>
-                                                    @endforeach
-                                                </select>
-                                                <br>
-                                                <br>
+{{--                                                <br>--}}
+{{--                                                <br>--}}
+{{--                                                <br>--}}
+
+{{--                                                <br>--}}
+{{--                                                <br>--}}
                                             </div>
                                     </div>
                                 </div>
                             </div>
                     </div>
                 </div>
-
+            <select name="productid" class="default-select form-control wide mb-3 form-control-lg" id="secondSelect" tabindex="null">
+                <option>Select Your Plan</option>
+                @foreach($netg as $air3)
+                    <option value={{$air3['id']}}"">{{$air3['network']}} {{$air3['plan']}} ₦{{$air3['tamount']}}</option>
+                @endforeach
+            </select>
             <input type="hidden" name="refid" value="<?php echo rand(10000000, 999999999); ?>">
 
             <button type="submit" class="btn btn-primary">Purchase Now</button>
@@ -171,24 +173,24 @@
                                 <div class="card card-body overflow-hidden">
                                     <div class="row">
                                             <div class="dropdown bootstrap-select default-select form-control wide mb-3 form-control-lg">
-                                                <br>
-                                                <br>
-                                                <br>
-                                                <select name="productid" class="default-select form-control wide mb-3 form-control-lg" id="secondSelect" tabindex="null">
-                                                    <option>Select Your Plan</option>
-                                                @foreach($net9 as $air3)
-                                                    <option value={{$air3['id']}}"">{{$air3['network']}} {{$air3['plan']}} ₦{{$air3['tamount']}}</option>
-                                                    @endforeach
-                                                </select>
-                                                <br>
-                                                <br>
+{{--                                                <br>--}}
+{{--                                                <br>--}}
+{{--                                                <br>--}}
+
+{{--                                                <br>--}}
+{{--                                                <br>--}}
                                             </div>
                                     </div>
                                 </div>
                             </div>
                     </div>
                 </div>
-
+            <select name="productid" class="default-select form-control wide mb-3 form-control-lg" id="secondSelect" tabindex="null">
+                <option>Select Your Plan</option>
+                @foreach($net9 as $air3)
+                    <option value={{$air3['id']}}"">{{$air3['network']}} {{$air3['plan']}} ₦{{$air3['tamount']}}</option>
+                @endforeach
+            </select>
             <input type="hidden" name="refid" value="<?php echo rand(10000000, 999999999); ?>">
 
             <button type="submit" class="btn btn-primary">Purchase Now</button>
