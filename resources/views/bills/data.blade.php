@@ -46,9 +46,10 @@
 
 
                             <div class="col-xl-3  col-sm-6">
-                                <div class="card overflow-hidden">
+                                <div class="card card-body overflow-hidden">
                                     <div class="row">
                                             <div class="dropdown bootstrap-select default-select form-control wide mb-3 form-control-lg">
+                                                <br>
                                                 <select name="productid" class="default-select form-control " id="secondSelect" >
                                                     <option>Select Your Plan</option>
                                                 @foreach($netm as $mtn)
@@ -81,9 +82,10 @@
 
 
                             <div class="col-xl-3  col-sm-6">
-                                <div class="card overflow-hidden">
+                                <div class="card card-body overflow-hidden">
                                     <div class="row">
                                             <div class="dropdown bootstrap-select default-select form-control wide mb-3 form-control-lg">
+                                                <br>
                                                 <select name="productid" class="default-select form-control wide mb-3 form-control-lg" id="secondSelect" tabindex="null">
                                                     <option>Select Your Plan</option>
                                                 @foreach($neta as $air)
@@ -119,9 +121,10 @@
 
 
                             <div class="col-xl-3  col-sm-6">
-                                <div class="card overflow-hidden">
+                                <div class="card card-body overflow-hidden">
                                     <div class="row">
                                             <div class="dropdown bootstrap-select default-select form-control wide mb-3 form-control-lg">
+                                                <br>
                                                 <select name="productid" class="default-select form-control wide mb-3 form-control-lg" id="secondSelect" tabindex="null">
                                                     <option>Select Your Plan</option>
                                                 @foreach($netg as $air3)
@@ -157,9 +160,10 @@
 
 
                             <div class="col-xl-3  col-sm-6">
-                                <div class="card overflow-hidden">
+                                <div class="card card-body overflow-hidden">
                                     <div class="row">
                                             <div class="dropdown bootstrap-select default-select form-control wide mb-3 form-control-lg">
+                                                <br>
                                                 <select name="productid" class="default-select form-control wide mb-3 form-control-lg" id="secondSelect" tabindex="null">
                                                     <option>Select Your Plan</option>
                                                 @foreach($net9 as $air3)
