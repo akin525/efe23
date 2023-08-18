@@ -90,6 +90,20 @@ class DashboardController
         }
 
     }
+    public function dataindex()
+    {
+        $server=server::where('status', 1)->first();
+        if ($server) {
+            $ads=advert::inRandomOrder()->first();
+//            return $ads;
+            return view('bills.pick', compact('server', 'ads'));
+        }else{
+            $mg="No service";
+            Alert::success('oops', $mg);
+            return back();
+        }
+
+    }
 
     function picknetwork($request)
     {

@@ -84,7 +84,7 @@
                                     <div class="card bg-primary">
                                         <center>
 
-                                        <div class="card-header border-0">
+                                        <div class="">
                                             <h4 class="heading mb-0 text-white">Advertisement 😎</h4>
                                         </div>
                                         <div class="card-body">
@@ -99,7 +99,7 @@
                                                         <img  class="bo" src="{{asset('ad.jpg')}}" alt="ads" />
                                                     </a>
                                             @else
-                                                <a href="{{route('advert')}}">
+                                                <a href="{{route('ads-detail', $ads->id)}}">
                                                 <img  class="bo" src="{{url('/', $ads->cover_image)}}" alt="ads" />
                                                     <h3 class="text-white" ><b>{{$ads->advert_name}}</b></h3>
                                                </a>

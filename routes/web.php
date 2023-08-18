@@ -67,7 +67,7 @@ Route::middleware([
     Route::post('buyairtime', [AirtimeController::class, 'buyairtime'])->name('buyairtime');
 
 //    data route
-    Route::view('pick', 'bills.pick');
+    Route::get('pick', [DashboardController::class, 'dataindex'])->name('pick');
     Route::get('getOptions/{selectedValue}', [DashboardController::class, 'netwplanrequest'])->name('getOptions');
     Route::get('select/{request}', [DashboardController::class, 'picknetwork'])->name('select');
     Route::post('buydata', [BillController::class, 'bill'])->name('buydata');
@@ -113,6 +113,7 @@ Route::middleware([
     Route::get('advert', [TransController::class, 'alladvert'])->name('advert');
     Route::get('myads', [AdvertController::class, 'myadsload'])->name('myads');
     Route::post('padvert', [AdvertController::class, 'advert'])->name('padvert');
+    Route::get('ads-detail/{id}', [AdvertController::class, 'adsdetails'])->name('ads-detail');
 
 
 

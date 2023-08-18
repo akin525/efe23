@@ -31,7 +31,6 @@
             </div>
         </div>
 
-
         <div class="col-xl-3 col-md-6">
             <div class="card" style="background: #394758!important">
                 <div class="card-header border-0">
@@ -54,6 +53,35 @@
                 </div>
             </div>
         </div>
+
+        <div class="card bg-primary">
+            <center>
+
+                <div class="">
+                    <h4 class="heading mb-0 text-white text-center">Advertisement 😎</h4>
+                </div>
+                <div class="card-body">
+                    <style>
+                        .bo {
+                            max-width: 100%;
+                            height: auto;
+                        }
+                    </style>
+                    @if($ads=="")
+                        <a href="{{route('advert')}}">
+                            <img  class="bo" src="{{asset('ad.jpg')}}" alt="ads" />
+                        </a>
+                    @else
+                        <a href="{{route('ads-detail', $ads->id)}}">
+                            <img  class="bo" src="{{url('/', $ads->cover_image)}}" alt="ads" />
+                            <h3 class="text-white" ><b>{{$ads->advert_name}}</b></h3>
+                        </a>
+
+
+                @endif
+            </center>
+        </div>
+
 
     </div>
 @endsection

@@ -1,6 +1,7 @@
 @extends('layouts.sidebar')
 @section('tittle', 'Ads Placement')
 @section('content')
+
     <style>
 
         .dropzone {
@@ -123,10 +124,16 @@
                         <div class="card-body">
                             <div class="basic-form">
                                     <div class="mb-3">
-                                        <textarea class="form-txtarea form-control" name="text" rows="8" ></textarea>
+                                        <textarea class="form-txtarea form-control" id="summernote" name="text" rows="8" ></textarea>
                                     </div>
                             </div>
                         </div>
+                        <script>
+                            // Initialize Summernote
+                            $(document).ready(function() {
+                                $('#summernote').summernote();
+                            });
+                        </script>
                         {{--            <div id="summernote">Hello Summernote</div>--}}
 
                         <div class="card-header">
