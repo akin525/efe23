@@ -84,7 +84,7 @@ class ResellerController
                 $wallet->save();
 
 
-                $token = uniqid('RENO-',true);
+                $token = uniqid(Auth::user()->username,true);
 
                 $user->apikey = $token;
                 $user->save();

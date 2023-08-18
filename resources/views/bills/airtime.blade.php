@@ -103,11 +103,8 @@
                                                 <img  class="bo" src="{{url('/', $ads->cover_image)}}" alt="ads" />
                                                     <h3 class="text-white" ><b>{{$ads->advert_name}}</b></h3>
                                                </a>
-
-
                                             @endif
                                         </center>
-
 
 
 
