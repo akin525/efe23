@@ -78,26 +78,51 @@
                                 </div>
                                 <br/>
                                 <br/>
-                                <div class="col-sm-4 ">
+                                <div class="col-sm-4">
                                     <br/>
                                     <br/>
                                     <div class="card bg-primary">
+                                        <center>
+
                                         <div class="card-header border-0">
-                                            <h4 class="heading mb-0 text-white">Wallet & Bonus 😎</h4>
+                                            <h4 class="heading mb-0 text-white">Advertisement 😎</h4>
                                         </div>
                                         <div class="card-body">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="sales-bx">
-                                                    <i class="fa fa-wallet text-yellow" style="font-size: 40px;"></i>
-                                                    <h4>₦{{number_format(intval(Auth::user()->parentData->balance *1),2)}}</h4>
-                                                    <span>Balance</span>
-                                                </div>
-                                                <div class="sales-bx">
-                                                    <i class="fa fa-wallet text-yellow" style="font-size: 40px"></i>
-                                                    <h4>₦{{number_format(intval(Auth::user()->parentData->bonus *1),2)}}</h4>
-                                                    <span>Bonus</span>
-                                                </div>
-                                            </div>
+                                            <style>
+                                                .bo {
+                                                    max-width: 100%;
+                                                    height: auto;
+                                                }
+                                            </style>
+                                            @if($ads=="")
+                                                    <a href="{{route('advert')}}">
+                                                        <img  class="bo" src="{{asset('ad.jpg')}}" alt="ads" />
+                                                    </a>
+                                            @else
+                                                <a href="{{route('advert')}}">
+                                                <img  class="bo" src="{{url('/', $ads->cover_image)}}" alt="ads" />
+                                                    <h3 class="text-white" ><b>{{$ads->advert_name}}</b></h3>
+                                               </a>
+
+
+                                            @endif
+                                        </center>
+
+
+
+
+                                        {{--                                            <div class="d-flex justify-content-between">--}}
+{{--                                                <div class="sales-bx">--}}
+{{--                                                    <i class="fa fa-wallet text-yellow" style="font-size: 40px;"></i>--}}
+{{--                                                    <h4>₦{{number_format(intval(Auth::user()->parentData->balance *1),2)}}</h4>--}}
+{{--                                                    <span>Balance</span>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="sales-bx">--}}
+{{--                                                    <i class="fa fa-wallet text-yellow" style="font-size: 40px"></i>--}}
+{{--                                                    <h4>₦{{number_format(intval(Auth::user()->parentData->bonus *1),2)}}</h4>--}}
+{{--                                                    <span>Bonus</span>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
 {{--                                            <ul class="list-group ">--}}
 {{--                                                <b><li class="list-group-item list-group-item-primary text-white"> MTN *310#</li></b>--}}
 {{--                                                <b><li class="list-group-item list-group-item-success text-white">MTN [CG] *131*4# or *460*260#</li></b>--}}

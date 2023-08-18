@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="{{asset('dashboard/cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.4/nouislider.min.css')}}">
     <script src="{{ asset('js/chart.js') }}"></script>
 
+    <!-- tagify-css -->
+    <link href="{{asset('dashboard/vendor/tagify/dist/tagify.css')}}" rel="stylesheet">
+
     <!-- SweetAlert CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
 
@@ -529,7 +532,21 @@
 <script src="{{asset('dashboard/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('dashboard/js/plugins-init/datatables.init.js')}}"></script>
 
+
+<!-- Dashboard 1 -->
+<script src="{{asset('dashboard/js/dashboard/dashboard-1.js')}}"></script>
+<script src="{{asset('dashboard/vendor/draggable/draggable.js')}}"></script>
+<script src="{{asset('dashboard/vendor/swiper/js/swiper-bundle.min.js')}}"></script>
+
+
 <!-- tagify -->
+<script src="{{asset('dashboard/vendor/tagify/dist/tagify.js')}}"></script>
+
+<script src="{{asset('dashboard/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('dashboard/vendor/datatables/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('dashboard/vendor/datatables/js/buttons.html5.min.js')}}"></script>
+<script src="{{asset('dashboard/vendor/datatables/js/jszip.min.js')}}"></script>
+<script src="{{asset('dashboard/js/plugins-init/datatables.init.js')}}"></script>
 
 
 <!-- Apex Chart -->

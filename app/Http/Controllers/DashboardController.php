@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\advert;
 use App\Models\airtimecons;
 use App\Models\bank;
 use App\Models\bill;
@@ -79,7 +80,9 @@ class DashboardController
     {
         $server=airtimecons::where('status', 1)->first();
         if ($server) {
-            return view('bills.airtime', compact('server'));
+            $ads=advert::inRandomOrder()->first();
+//            return $ads;
+            return view('bills.airtime', compact('server', 'ads'));
         }else{
             $mg="No service";
             Alert::success('oops', $mg);

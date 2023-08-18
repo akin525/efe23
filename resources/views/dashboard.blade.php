@@ -77,6 +77,17 @@
             </div>
         </div>
 
+        <style>
+           .bo {
+                max-width: 100%;
+                height: 200px;
+            }
+        </style>
+        <div class="card card-body">
+        <img  class="bo" src="{{asset('ad3.jpeg')}}" alt="ads" />
+            <a href="{{route('advert')}}" class="badge badge-secondary">Click here to advertise with us</a>
+        </div>
+        <hr>
         <div class="col-lg-6 col-sm-6">
             <div class="card">
                 <div class="card-header">
