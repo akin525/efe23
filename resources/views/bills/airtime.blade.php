@@ -87,7 +87,7 @@
                                         <div class="">
                                             <h4 class="heading mb-0 text-white">Advertisement 😎</h4>
                                         </div>
-                                        <div class="card-body">
+                                        <div class="card card-body shadow-hover">
                                             <style>
                                                 .bo {
                                                     max-width: 100%;

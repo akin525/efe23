@@ -13,7 +13,7 @@
                         <div class="col-xl-10">
                             <div class="row">
                                 <div class="col-xl-2 col-sm-4 col-6">
-                                    <a href="{{url('pick')}}">
+                                    <a href="{{url('spin')}}">
                                         <div class="card ov-card">
                                             <div class="card-body">
                                                 <div class="ana-box">

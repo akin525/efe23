@@ -116,7 +116,8 @@ Route::middleware([
     Route::get('ads-detail/{id}', [AdvertController::class, 'adsdetails'])->name('ads-detail');
 
 
-
+//    spin route
+    Route::get('spin', [\App\Http\Controllers\SpinController::class, 'loadspin'])->name('spin');
 
     Route::get('/transaction', [DashboardController::class, 'getTransactions']);
     Route::get('/transaction1', [DashboardController::class, 'getTransactions1']);

@@ -113,6 +113,7 @@ function adsdetails($request)
 }
 
 
+
 function alladsloaded()
 {
     $banner=Banner::where('page', 2)->first();
