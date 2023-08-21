@@ -19,8 +19,8 @@ public function allrequest()
 public function alladvert()
 {
 
-//        $advert = Advert::where('username', Auth::user()->username)->get();
-        return view('task.ads');
+        $advert = Advert::where('username', Auth::user()->username)->get();
+        return view('task.ads', compact('advert'));
 
 }
 }
