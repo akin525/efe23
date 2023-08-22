@@ -113,12 +113,12 @@
             <div class="card-header">
                 <h4 class="card-title">Addition Image</h4>
             </div>
-            <div class="card-body">
+            <div class="card card-body">
                 <div class="basic-form">
                     <div class="dropzone">
                         <div class="dlab-default dlab-message">
                             <input class="dlab-button" name="add" id="imageInput" type="file" required/>
-                            <div class="card card-body" id="imageContainer">
+                            <div  id="imageContainer">
                                 <img id="displayedImage" alt="Displayed Image">
                             </div>
                         </div>
@@ -153,13 +153,13 @@
                         <div class="card-header">
                             <h4 class="card-title">Cover Image</h4>
                         </div>
-                        <div class="card-body">
+                        <div class="card card-body">
                             <div class="basic-form">
                                 <div class="dropzone dlab-clickable">
 
                                     <div class="dlab-default dlab-message">
                                         <input class="dlab-button" name="cover" id="imageInput1"  type="file" required/>
-                                        <div class="card card-body" id="imageContainer1">
+                                        <div id="imageContainer1">
                                             <img id="displayedImage1" alt="">
                                         </div>
                                     </div>
