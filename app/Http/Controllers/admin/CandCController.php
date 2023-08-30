@@ -174,8 +174,8 @@ public function charge(Request $request)
 
         $receiver = $user->email;
 
-        Mail::to($receiver)->send(new Emailcharges($charp));
-        Mail::to($admin)->send(new Emailcharges($charp));
+//        Mail::to($receiver)->send(new Emailcharges($charp));
+//        Mail::to($admin)->send(new Emailcharges($charp));
         $mg=$request->amount . " was charge from " . $request->username . ' wallet successfully';
         return response()->json(['status'=>'success', 'message'=>$mg]);
 
