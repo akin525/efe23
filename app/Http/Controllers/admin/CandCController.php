@@ -161,7 +161,7 @@ public function charge(Request $request)
         $gt = $wallet->balance - $request->amount;
         $charp = charges::create([
             'username' => $user->username,
-            'payment_ref' => $request->refid,
+            'refid' => $request->refid,
             'amount' => $request->amount,
             'iwallet' => $wallet->balance,
             'fwallet' => $gt,
