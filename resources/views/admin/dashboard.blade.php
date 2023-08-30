@@ -285,7 +285,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xl-2 col-sm-4 col-6">
+                            <div class="col-xl-2 col-sm-4 col-6" data-bs-toggle="modal" data-bs-target="#chargeModalCenter">
                                 <div class="card ov-card">
                                     <div class="card-body">
                                         <div class="ana-box">
@@ -302,6 +302,51 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="modal fade" id="chargeModalCenter">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Charge User</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                            </button>
+                                        </div>
+                                        <form id="chargeForm">
+                                            @csrf
+                                            <div class="card card-body">
+
+                                                {{--                       <input placeholder="Your e-mail" class="subscribe-input" name="email" type="email">--}}
+                                                <div id="div_id_network" class="form-group">
+                                                    <label for="network" class=" requiredField">
+                                                        Username<span class="asteriskField">*</span>
+                                                    </label>
+                                                    <div class="">
+                                                        <input type="text" id="username1" name="username"  class="text-success form-control" required >
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                                <div id="div_id_network" >
+                                                    <label for="network" class=" requiredField">
+                                                        Enter Amount<span class="asteriskField">*</span>
+                                                    </label>
+                                                    <div class="">
+                                                        <input type="number" id="amount1" name="amount"  class="text-success form-control" required>
+                                                    </div>
+                                                </div>
+                                                <br/>
+
+                                                <input type="hidden" name="refid" value="<?php echo rand(10000000, 999999999); ?>">
+                                                <button type="submit" class="btn btn-primary">Charge</button>
+                                            </div>
+                                        </form>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                            {{--                        <button type="button" class="btn btn-primary">Save changes</button>--}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="col-xl-2 col-sm-4 col-6">
                                 <div class="card ov-card">
                                     <div class="card-body">
@@ -509,6 +554,87 @@
         });
 
     </script>
+    <script>
+        $(document).ready(function() {
+            $('#chargeForm').submit(function(e) {
+                e.preventDefault(); // Prevent the form from submitting traditionally
+                // Get the form data
+                var formData = $(this).serialize();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'Do you want to Charge ' + document.getElementById("username1").value + ' ₦' + document.getElementById("amount1").value + '?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: 'Processing',
+                            text: 'Please wait...',
+                            icon: 'info',
+                            allowOutsideClick: false,
+                            showConfirmButton: false
+                        });
+                        // The user clicked "Yes", proceed with the action
+                        // Add your jQuery code here
+                        // For example, perform an AJAX request or update the page content
+                        $('#loadingSpinner').show();
+                        $.ajax({
+                            url: "{{ route('admin/ch') }}",
+                            type: 'POST',
+                            data: formData,
+                            success: function(response) {
+                                // Handle the success response here
+                                $('#loadingSpinner').hide();
+
+                                console.log(response);
+                                // Update the page or perform any other actions based on the response
+
+                                if (response.status == 'success') {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Success',
+                                        text: response.message
+                                    }).then(() => {
+                                        location.reload(); // Reload the page
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        icon: 'info',
+                                        title: 'Pending',
+                                        text: response.message
+                                    });
+                                    // Handle any other response status
+                                }
+
+                            },
+                            error: function(xhr) {
+                                $('#loadingSpinner').hide();
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'fail',
+                                    text: xhr.responseText
+                                });
+                                // Handle any errors
+                                console.log(xhr.responseText);
+
+                            }
+                        });
+
+
+                    }
+                });
+
+
+                // Send the AJAX request
+            });
+        });
+
+    </script>
+
 
 @endsection
 

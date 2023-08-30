@@ -6,6 +6,7 @@ use App\Console\encription;
 use App\Mail\Emailcharges;
 use App\Mail\Emailfund;
 use App\Models\charge;
+use App\Models\charges;
 use App\Models\charp;
 use App\Models\deposit;
 use App\Models\setting;
@@ -136,7 +137,7 @@ public function refund(Request $request)
 }
 public function sp()
 {
-    $ch=charp::get();
+    $ch=charges::get();
     return view('admin/charge', compact('ch'));
 
 }
@@ -148,17 +149,17 @@ public function charge(Request $request)
         'refid' => 'required',
     ]);
     if (Auth()->user()->role == "admin") {
-        $user = User::where('username', encription::encryptdata($request->username))->first();
+        $user = User::where('username', $request->username)->first();
         if (!isset($user)){
-            Alert::warning('Admin', 'Username not found');
-            return redirect("admin/charge");
+
+            return response()->json('User not found', Response::HTTP_BAD_REQUEST);
 
         }
         $wallet = wallet::where('username', $user->username)->first();
 
 
         $gt = $wallet->balance - $request->amount;
-        $charp = charge::create([
+        $charp = charges::create([
             'username' => $user->username,
             'payment_ref' => $request->refid,
             'amount' => $request->amount,
@@ -169,15 +170,15 @@ public function charge(Request $request)
         $wallet->balance = $gt;
         $wallet->save();
 
-        $admin = 'info@renomobilemoney.com';
+        $admin = 'info@efemobilemoney.com';
 
-        $receiver = encription::decryptdata($user->email);
+        $receiver = $user->email;
 
         Mail::to($receiver)->send(new Emailcharges($charp));
         Mail::to($admin)->send(new Emailcharges($charp));
         $mg=$request->amount . " was charge from " . $request->username . ' wallet successfully';
-        Alert::success('Admin', $mg);
-        return redirect(route('admin/charge'));
+        return response()->json(['status'=>'success', 'message'=>$mg]);
+
 
     }
     return redirect("admin/login")->with('status', 'You are not allowed to access');
