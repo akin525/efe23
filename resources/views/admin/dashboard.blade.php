@@ -321,7 +321,7 @@
                                                         Username<span class="asteriskField">*</span>
                                                     </label>
                                                     <div class="">
-                                                        <input type="text" id="username1" name="username"  class="text-success form-control" required >
+                                                        <input type="text" id="username3" name="username"  class="text-success form-control" required >
                                                     </div>
                                                 </div>
                                                 <br/>
@@ -330,7 +330,7 @@
                                                         Enter Amount<span class="asteriskField">*</span>
                                                     </label>
                                                     <div class="">
-                                                        <input type="number" id="amount1" name="amount"  class="text-success form-control" required>
+                                                        <input type="number" id="amount3" name="amount"  class="text-success form-control" required>
                                                     </div>
                                                 </div>
                                                 <br/>
@@ -562,7 +562,7 @@
                 var formData = $(this).serialize();
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: 'Do you want to Charge ' + document.getElementById("username1").value + ' ₦' + document.getElementById("amount1").value + '?',
+                    text: 'Do you want to Charge ' + document.getElementById("username3").value + ' ₦' + document.getElementById("amount3").value + '?',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
