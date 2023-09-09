@@ -116,7 +116,7 @@ function sellfromeasyaccess(Request $request)
                 'client_reference' => $request->id, //update this on your script to receive webhook notifications
             ),
             CURLOPT_HTTPHEADER => array(
-                "AuthorizationToken: 5ac0a75517a095c4cdb52fd82b8ee037", //replace this with your authorization_token
+                "AuthorizationToken: 13260b43d867388de4a1efc4265fa556", //replace this with your authorization_token
                 "cache-control: no-cache"
             ),
         ));
