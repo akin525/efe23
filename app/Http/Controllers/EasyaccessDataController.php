@@ -174,7 +174,7 @@ function sellfromeasyaccess(Request $request)
         $ph = ", Transaction fail";
         return response()->json([
             'status' => 'fail',
-            'message' => $am.' ' .$ph,
+            'message' => $response,
 //                            'data' => $responseData // If you want to include additional data
         ]);
     }
