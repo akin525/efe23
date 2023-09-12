@@ -37,7 +37,7 @@ function regenrateaccount1($request)
         CURLOPT_POSTFIELDS => array('account_name' => $name,
             'business_short_name' => 'EFE','uniqueid' => $username,
             'email' => $email,'dob' => $user['dob'],
-            'address' => $user['address'],'gender' => $user['gender'],
+            'address' => $user['address'],'gender' => $user['gender'], 'Provider'=>'providus',
             'phone' =>$phone,'webhook_url' => 'https://app.efemobilemoney.com/api/run1'),
         CURLOPT_HTTPHEADER => array(
             'Authorization: mcd_key_aq9vGp2N8679cX3uAU7zIc3jQfd'
