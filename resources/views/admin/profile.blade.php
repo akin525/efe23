@@ -63,7 +63,7 @@
                                                     <div class="card-body">
                                                         @if($user->parentData->bank==null)
                                                             <center>
-                                                                <button type="button" class="btn btn-primary text-center">Generate Account Number</button>
+                                                                <a href="{{route('admin/regen1',$user->id)}}" class="btn btn-primary text-center">Generate Account Number</a>
                                                             </center>
                                                         @else
                                                             <div class="basic-list-group">

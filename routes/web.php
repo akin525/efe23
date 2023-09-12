@@ -178,6 +178,8 @@ Route::get('admin/dashboard', [DashboardsController::class, 'dashboard'])->name(
     Route::post('admin/finduser', [UsersController::class, 'finduser'])->name('admin/finduser');
     Route::get('admin/finds', [UsersController::class, 'fin'])->name('admin/finds');
 
+    Route::get('admin/regen1/{id}', [\App\Http\Controllers\admin\RegenerateVirtualAccountController::class, 'regenrateaccount1'])->name('admin/regen1');
+
 
     Route::get('admin/product', [productController::class, 'index'])->name('admin/product');
     Route::get('admin/product1', [productController::class, 'index1'])->name('admin/product1');
@@ -192,6 +194,7 @@ Route::get('admin/dashboard', [DashboardsController::class, 'dashboard'])->name(
     Route::get('admin/editproduct/{id}', [ProductController::class, 'in'])->name('admin/editproduct');
     Route::get('admin/pd/{id}', [ProductController::class, 'on'])->name('admin/pd');
     Route::get('admin/pd1/{id}', [ProductController::class, 'on1'])->name('admin/pd1');
+
 
 
     Route::get('admin/cserver', [\App\Http\Controllers\admin\CreateServerController::class, 'createnewserver'])->name('admin/cserver');
