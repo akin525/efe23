@@ -270,19 +270,8 @@
 <script src="{{asset('auth/assets/js/core/libs.min.js')}}"></script>
 <!-- Plugin Scripts -->
 
-
-
-
-
-
-
-
-
 <!-- Slider-tab Script -->
 <script src="{{asset('auth/assets/js/plugins/slider-tabs.js')}}"></script>
-
-
-
 
 
 <!-- Lodash Utility -->

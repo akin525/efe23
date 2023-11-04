@@ -137,7 +137,7 @@ class AirtimeController
                     ]);
                 }
             }elseif ($mcd->server == "easyaccess"){
-                $response = $daterserver->easyaccess($object);
+                $response = $daterserver->easyaccess($request);
                 $data = json_decode($response, true);
 
                 if ($data['success']== 'true') {
